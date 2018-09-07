@@ -9,18 +9,18 @@ class player:
 
 
 class ladder:
-    table = [player("james", 1), player("mike", 2)]
+    table = []
 
     def __init__(self):
-        self.table = []
+        self.table = [player("james", 1), player("mike", 2)]
 
 
     def get_ladder(self):
         return self.table
 
     def add_new_player(self, winner_name, loser_name, win):
-
-        loser_pos = self.table.index(player(loser_name, ))
+        print self.table
+        loser_pos = self.table.index(player(loser_name))
 
         if name in self.table:
             return "player already in table"
