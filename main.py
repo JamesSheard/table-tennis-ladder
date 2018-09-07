@@ -10,22 +10,19 @@ class player:
 
 
 def main():
+    p1 = player
     if sys.argv[1] == "--name":
         name = sys.argv[2]
         position = sys.argv[4]
-        player(name, position)
-    else if sys.argv[1] == "--position":
+        p1 = player(name, position)
+    elif sys.argv[1] == "--position":
         position = sys.argv[2]
         name = sys.argv[4]
+        p1(name, position)
 
-    print player.name
-    print player.position
-
-
-        
-
-    print james.name, james.position
+    print p1.name
+    print p1.position
 
 
-#if __name__ == "__main__":
-#    main()
+if __name__ == "__main__":
+    main()
