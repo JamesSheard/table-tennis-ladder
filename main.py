@@ -40,10 +40,10 @@ def main():
     if sys.argv[1] == "--win" and sys.argv[3] == "--lose":
         winner_name, loser_name = sys.argv[2], sys.argv[4]
         ladd.add_new_player(winner_name, loser_name)
-        print ladd.get_ladder()
+        ladd.get_ladder()
 
     elif sys.argv[1] == "--getladder":
-        print ladd.get_ladder()
+        ladd.get_ladder()
 
     else:
         print "incorrect parameters. `python main.py --win <name> --lose <name>`"
