@@ -18,16 +18,20 @@ class ladder:
     def get_ladder(self):
         return self.table
 
-    def add_new_player(self, name, win):
+    def add_new_player(self, winner_name, loser_name, win):
+
+        loser_pos = self.table.index(player(loser_name, ))
+
         if name in self.table:
             return "player already in table"
 
         elif win:
-            self.table.insert(player(name, ))
+            player(winner_name, loser_pos)
+            self.table.insert(loser_pos, winner_name)
         else:
-            self.table.append(player(name, len(self.table)+1))
+            self.table.append(player(loser_name, len(self.table)+1))
 
-    def modify_existing_player(self, player):
+    #def modify_existing_player(self, player):
 
 
     def player_in_ladder(self, name):
@@ -42,15 +46,15 @@ def main():
         winner_name = sys.argv[2]
         loser_name = sys.argv[4]
 
-        if not ladder.player_in_ladder(winner_name):
-            ladder.add_new_player(winner_name, True)
-        if not ladder.player_in_ladder(loser_name):
-            ladder.add_new_player(loser_name, False)
+        if ladd.player_in_ladder(winner_name) != True:
+            ladd.add_new_player(winner_name, loser_name, True)
+        if not ladd.player_in_ladder(loser_name):
+            ladd.add_new_player(loser_name, False)
 
-        if ladder.player_in_ladder(name):
-            ladder.modify_existing_player(player)
-        elif not ladder.player_in_ladder(name):
-            ladder.add_new_player(name)
+        if ladd.player_in_ladder(name):
+            ladd.modify_existing_player(player)
+        elif not ladd.player_in_ladder(name):
+            ladd.add_new_player(name)
 
     elif sys.argv[1] == "--getladder":
         print ladd.get_ladder()
