@@ -1,4 +1,4 @@
-
+import sys
 
 class player:
     name = ""
@@ -10,10 +10,22 @@ class player:
 
 
 def main():
-    james = player("james", 1)
+    if sys.argv[1] == "--name":
+        name = sys.argv[2]
+        position = sys.argv[4]
+        player(name, position)
+    else if sys.argv[1] == "--position":
+        position = sys.argv[2]
+        name = sys.argv[4]
+
+    print player.name
+    print player.position
+
+
+        
 
     print james.name, james.position
 
 
-if __name__ == "__main__":
-    main()
+#if __name__ == "__main__":
+#    main()
