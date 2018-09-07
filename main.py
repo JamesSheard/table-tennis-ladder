@@ -13,12 +13,9 @@ class ladder:
     def __init__(self):
         self.table = [player("james"), player("mike"), player("john"), player("jim")]
 
-
     def get_ladder(self):
         for player in self.table:
             print player.name + " " + str(self.table.index(player) + 1)
-
-
 
     def add_new_player(self, winner_name, loser_name):
         loser_pos = len(self.table)
@@ -32,7 +29,6 @@ class ladder:
         else:
             self.table.insert(loser_pos, player(winner_name))
 
-
     def player_in_ladder(self, name):
         if name in self.table:
             return True
@@ -42,8 +38,7 @@ class ladder:
 def main():
     ladd = ladder() #main.py --win john --lose barry
     if sys.argv[1] == "--win" and sys.argv[3] == "--lose":
-        winner_name = sys.argv[2]
-        loser_name = sys.argv[4]
+        winner_name, loser_name = sys.argv[2], sys.argv[4]
         ladd.add_new_player(winner_name, loser_name)
         print ladd.get_ladder()
 
