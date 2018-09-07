@@ -3,35 +3,34 @@ import sys
 
 
 class player:
-    def __init__(self, name, position):
+    def __init__(self, name):
         self.name = name
-        self.position = position
 
 
 class ladder:
-    table = [player("james", 1), player("mike", 2)]
+    table = []
 
     def __init__(self):
-        self.table = []
+        self.table = [player("james"), player("mike"), player("john"), player("jim")]
 
 
     def get_ladder(self):
-        return self.table
+        for player in self.table:
+            print player.name + " " + str(self.table.index(player) + 1)
 
-    def add_new_player(self, winner_name, loser_name, win):
 
-        loser_pos = self.table.index(player(loser_name, ))
 
-        if name in self.table:
-            return "player already in table"
+    def add_new_player(self, winner_name, loser_name):
+        loser_pos = len(self.table)
+        for play in self.table:
+            if play.name == loser_name:
+                loser_pos = self.table.index(play)
 
-        elif win:
-            player(winner_name, loser_pos)
-            self.table.insert(loser_pos, winner_name)
+        if loser_pos == len(self.table):
+            self.table.append(player(winner_name))
+            self.table.append(player(loser_name))
         else:
-            self.table.append(player(loser_name, len(self.table)+1))
-
-    #def modify_existing_player(self, player):
+            self.table.insert(loser_pos, player(winner_name))
 
 
     def player_in_ladder(self, name):
@@ -42,22 +41,17 @@ class ladder:
 
 def main():
     ladd = ladder() #main.py --win john --lose barry
-    if sys.argv[1] == "--win":
+    if sys.argv[1] == "--win" and sys.argv[3] == "--lose":
         winner_name = sys.argv[2]
         loser_name = sys.argv[4]
-
-        if ladd.player_in_ladder(winner_name) != True:
-            ladd.add_new_player(winner_name, loser_name, True)
-        if not ladd.player_in_ladder(loser_name):
-            ladd.add_new_player(loser_name, False)
-
-        if ladd.player_in_ladder(name):
-            ladd.modify_existing_player(player)
-        elif not ladd.player_in_ladder(name):
-            ladd.add_new_player(name)
+        ladd.add_new_player(winner_name, loser_name)
+        print ladd.get_ladder()
 
     elif sys.argv[1] == "--getladder":
         print ladd.get_ladder()
+
+    else:
+        print "incorrect parameters. `python main.py --win <name> --lose <name>`"
 
 
 if __name__ == "__main__":
