@@ -26,8 +26,10 @@ class ladder:
         if loser_pos == len(self.table):
             self.table.append(player(winner_name))
             self.table.append(player(loser_name))
+
         else:
             self.table.insert(loser_pos, player(winner_name))
+            self.table.pop(loser_pos)
 
     def player_in_ladder(self, name):
         if name in self.table:
