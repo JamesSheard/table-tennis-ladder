@@ -1,4 +1,3 @@
-import os
 import sys
 from prettytable import PrettyTable
 
@@ -21,8 +20,9 @@ class ladder:
         print formatted_table
 
     def add_new_player(self, winner_name, loser_name):
-        loser_pos = len(self.table)
-        winner_pos = len(self.table)
+        loser_pos, winner_pos = len(self.table), len(self.table)
+
+        winner_name, loser_name = winner_name.capitalize(), loser_name.capitalize()
 
         for play in self.table:
             if play.name == loser_name:
@@ -46,10 +46,9 @@ class ladder:
     def read_state(self):
         try:
             f = open("ladder/ladder_state.txt")
-
             contents = f.read().split("\n")
             for line in contents:
-                    self.table.append(player(line))
+                self.table.append(player(line))
             f.close()
 
         except:
@@ -90,11 +89,12 @@ def main():
         if player_entered == "1":
             ladd.get_ladder()
         elif player_entered == "2":
-            entered_winner = raw_input("Please enter the winner: ")
-            entered_loser = raw_input("Please enter the loser: ")
+            entered_winner = raw_input("Please enter the winner: ").lower()
+            entered_loser = raw_input("Please enter the loser: ").lower()
             ladd.add_new_player(entered_winner, entered_loser)
             ladd.get_ladder()
             ladd.write_state()
+
 
 if __name__ == "__main__":
     main()
