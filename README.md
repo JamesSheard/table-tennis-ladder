@@ -19,7 +19,7 @@ pip2 install PrettyTable
 
 |Command|What it does|
 |-|-|
-|python main.py to run the program| Runs the program and defaults to the leaderboard|
+|python main.py to run the program| Runs the program and defaults to the help|
 |python main.py --interactive| Runs the user interface|
 |python main.py --win <name> --lose <name>|Sets who won and lost the game. Both variables needed|
 |python main.py --getladder|Get's the current state of the ladder|
