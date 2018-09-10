@@ -44,16 +44,22 @@ class ladder:
         return False
 
     def read_state(self):
-        f = open("ladder/ladder_state.txt")
-        contents = f.read().split("\n")
-        for line in contents:
-            current_player = line.split()
-            if current_player:
-                self.table.append(player(current_player[0]))
-        f.close()
+        try:
+            f = open("ladder/ladder_state.txt")
+
+            contents = f.read().split("\n")
+            for line in contents:
+                current_player = line.split()
+                if current_player:
+                    self.table.append(player(current_player[0]))
+            f.close()
+
+        except:
+            self.table = []
+            print "Could not find populated state file."
 
     def write_state(self):
-        f = open("ladder/ladder_state.txt", "w")
+        f = open("ladder/ladder_state.txt", "w+")
         f.truncate(0)
         for player in self.table:
             f.write(player.name + " " + str(self.table.index(player) + 1) + "\n")
