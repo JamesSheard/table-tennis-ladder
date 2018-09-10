@@ -1,5 +1,6 @@
 import sys
 from prettytable import PrettyTable
+import string
 
 
 class player:
@@ -21,7 +22,6 @@ class ladder:
 
     def add_new_player(self, winner_name, loser_name):
         loser_pos, winner_pos = len(self.table), len(self.table)
-
         winner_name, loser_name = winner_name.capitalize(), loser_name.capitalize()
 
         for play in self.table:
@@ -68,11 +68,25 @@ class ladder:
         return
 
 
+def validate_input(name):
+    invalid_chars = set(string.punctuation.replace("_", ""))
+    if any(char in invalid_chars for char in name):
+        print "Name contains invalid characters. Please use only letters, spaces and underscores."
+        return True
+    else:
+        return False
+
+
 def main():
-    ladd = ladder() #main.py --win john --lose barry
+    ladd = ladder()
+
     try:
         if sys.argv[1] == "--win" and sys.argv[3] == "--lose":
             winner_name, loser_name = sys.argv[2], sys.argv[4]
+
+            if validate_input(winner_name) or validate_input(loser_name):
+                return False
+
             ladd.add_new_player(winner_name, loser_name)
             ladd.get_ladder()
             ladd.write_state()
@@ -82,16 +96,21 @@ def main():
 
         else:
             print "incorrect parameters. `python main.py --win <name> --lose <name>`"
+
     except:
         print "Would you like to: \n1. Show the ladder \n2. Add new game data"
-        player_entered = raw_input("Please enter your selection: ")
+        player_entered = raw_input("Please enter your selection:")
 
         if player_entered == "1":
             ladd.get_ladder()
         elif player_entered == "2":
-            entered_winner = raw_input("Please enter the winner: ").lower()
-            entered_loser = raw_input("Please enter the loser: ").lower()
-            ladd.add_new_player(entered_winner, entered_loser)
+            winner_name = raw_input("Please enter the winner: ").lower()
+            loser_name = raw_input("Please enter the loser: ").lower()
+
+            if validate_input(winner_name) or validate_input(loser_name):
+                return False
+
+            ladd.add_new_player(winner_name, loser_name)
             ladd.get_ladder()
             ladd.write_state()
 
