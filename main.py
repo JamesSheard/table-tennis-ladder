@@ -3,61 +3,71 @@ import sys
 
 
 class player:
-    def __init__(self, name, position):
+    def __init__(self, name):
         self.name = name
-        self.position = position
 
 
 class ladder:
     table = []
 
     def __init__(self):
-        self.table = [player("james", 1), player("mike", 2)]
-
+        self.read_state()
 
     def get_ladder(self):
-        return self.table
+        for player in self.table:
+            print player.name + " " + str(self.table.index(player) + 1)
 
-    def add_new_player(self, winner_name, loser_name, win):
-        print self.table
-        loser_pos = self.table.index(player(loser_name))
+    def add_new_player(self, winner_name, loser_name):
+        loser_pos = len(self.table)
+        for play in self.table:
+            if play.name == loser_name:
+                loser_pos = self.table.index(play)
 
-        if name in self.table:
-            return "player already in table"
+        if loser_pos == len(self.table):
+            self.table.append(player(winner_name))
+            self.table.append(player(loser_name))
 
-        elif win:
-            player(winner_name, loser_pos)
-            self.table.insert(loser_pos, winner_name)
         else:
-            self.table.append(player(loser_name, len(self.table)+1))
-
-    #def modify_existing_player(self, player):
-
+            self.table.insert(loser_pos, player(winner_name))
+            self.table.pop(loser_pos)
 
     def player_in_ladder(self, name):
         if name in self.table:
             return True
         return False
 
+    def read_state(self):
+        f = open("ladder/ladder_state.txt")
+        contents = f.read().split("\n")
+        for line in contents:
+            current_player = line.split()
+            if current_player:
+                self.table.append(player(current_player[0]))
+        f.close()
+
+    def write_state(self):
+        f = open("ladder/ladder_state.txt", "w")
+        f.truncate(0)
+        for player in self.table:
+            f.write(player.name + " " + str(self.table.index(player) + 1) + "\n")
+
+        f.close()
+        return
+
 
 def main():
     ladd = ladder() #main.py --win john --lose barry
-    if sys.argv[1] == "--win":
-        winner_name = sys.argv[2]
-        loser_name = sys.argv[4]
-
-        if ladd.player_in_ladder(winner_name) != True:
-            ladd.add_new_player(winner_name, loser_name, True)
-        if not ladd.player_in_ladder(loser_name):
-            ladd.add_new_player(loser_name, False)
-
-        if ladd.player_in_ladder(name):
-            ladd.modify_existing_player(player)
-        elif not ladd.player_in_ladder(name):
-            ladd.add_new_player(name)
+    if sys.argv[1] == "--win" and sys.argv[3] == "--lose":
+        winner_name, loser_name = sys.argv[2], sys.argv[4]
+        ladd.add_new_player(winner_name, loser_name)
+        ladd.get_ladder()
+        ladd.write_state()
 
     elif sys.argv[1] == "--getladder":
-        print ladd.get_ladder()
+        ladd.get_ladder()
+
+    else:
+        print "incorrect parameters. `python main.py --win <name> --lose <name>`"
 
 
 if __name__ == "__main__":
