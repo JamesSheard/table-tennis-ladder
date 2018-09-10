@@ -18,25 +18,20 @@ def main():
             ladder.get_ladder()
             ladder.write_state()
 
-        if user_interface.is_get_ladder():
+        elif user_interface.is_get_ladder():
             ladder.get_ladder()
+
+        elif user_interface.is_get_help():
+            user_interface.print_help()
+
+        elif user_interface.is_interactive_mode():
+            user_interface.interactive_mode(ladder)
 
         else:
-            print "incorrect parameters. `python main.py --win <name> --lose <name>`"
+            print "Incorrect parameters. Use `pythom main.py --help` to view commands"
 
     except:
-        player_entered = user_interface.get_selection()
-
-        if player_entered == "1":
-            ladder.get_ladder()
-        elif player_entered == "2":
-            winner_name, loser_name, valid = user_interface.get_names()
-            if valid != True:
-                return False
-
-            ladder.add_new_player(winner_name, loser_name)
-            ladder.get_ladder()
-            ladder.write_state()
+        user_interface.print_help()
 
 
 if __name__ == "__main__":

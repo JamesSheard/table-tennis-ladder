@@ -17,6 +17,21 @@ class Interface:
             return True
         return False
 
+    def is_get_help(self):
+        if self.args[1] == "--help":
+            return True
+        return False
+
+    def is_interactive_mode(self):
+        if self.args[1] == "--interactive":
+            return True
+        return False
+
+    def print_help(self):
+        f = open("help/help.txt")
+        print f.read()
+        f.close()
+
     def validate_input(self, name):
         invalid_chars = set(string.punctuation.replace("_", ""))
         if any(char in invalid_chars for char in name):
@@ -37,3 +52,17 @@ class Interface:
             return winner_name, loser_name, False
 
         return winner_name, loser_name, True
+
+    def interactive_mode(self, ladder):
+        player_entered = self.get_selection()
+
+        if player_entered == "1":
+            ladder.get_ladder()
+        elif player_entered == "2":
+            winner_name, loser_name, valid = self.get_names()
+            if valid != True:
+                return False
+
+            ladder.add_new_player(winner_name, loser_name)
+            ladder.get_ladder()
+            ladder.write_state()
