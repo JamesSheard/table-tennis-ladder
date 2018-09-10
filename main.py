@@ -2,6 +2,7 @@ import sys
 from user_interface import Interface
 from ladder import Ladder
 
+
 def main():
     ladder = Ladder()
     user_interface = Interface(sys.argv)

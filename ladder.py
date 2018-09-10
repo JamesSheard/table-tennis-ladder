@@ -28,7 +28,7 @@ class Ladder:
             self.table.append(player(winner_name))
             self.table.append(player(loser_name))
 
-        elif loser_pos + 1 == len(self.table):
+        elif winner_pos == len(self.table):
             self.table.insert(loser_pos, player(winner_name))
 
         else:
