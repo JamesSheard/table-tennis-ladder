@@ -1,7 +1,8 @@
 # Table Tennis Ladder
 
 ### Created by
-Mike Silverstone\n
+Mike Silverstone
+
 James Sheard
 
 ## Why did we make this?
@@ -10,7 +11,8 @@ Used to track your table tennis rankings within Infinity Works. Also, it's one o
 
 ## How to install
 
-Download Python 2.7\n
+Download Python 2.7
+
 pip2 install PrettyTable
 
 ## How to use
