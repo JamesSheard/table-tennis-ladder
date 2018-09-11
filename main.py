@@ -14,12 +14,12 @@ def main():
             if user_interface.validate_input(winner_name) or user_interface.validate_input(loser_name):
                 return False
 
-            ladder.add_new_player(winner_name, loser_name)
-            ladder.get_ladder()
+            ladder.add_new_score(winner_name, loser_name)
+            ladder.print_ladder()
             ladder.write_state()
 
         elif user_interface.is_get_ladder():
-            ladder.get_ladder()
+            ladder.print_ladder()
 
         elif user_interface.is_get_help():
             user_interface.print_help()
