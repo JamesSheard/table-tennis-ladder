@@ -17,6 +17,9 @@ Use this command to check the current ladder rankings.
 python main.py --interactive
 Use this command to use the menu in interactive mode.
 
+python test_ladder.py
+Use this command to test the ladder class.
+
 
 python main.py --help
 Check help file.
