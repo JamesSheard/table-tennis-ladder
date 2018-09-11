@@ -112,7 +112,6 @@ class TestLadderMethods(unittest.TestCase):
         # 144 is the number of characters in the leaderboard
         # TODO: This is properly shonk.
 
-
         self.assertEqual(len(captured_output.getvalue()), expected_len)
 
 

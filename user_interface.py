@@ -45,6 +45,7 @@ class Interface:
         else:
             return False
 
+    # TODO: Below this line has no test coverage
     def get_selection(self):
         print "Would you like to: \n1. Show the ladder \n2. Add new game data"
         return raw_input("Please enter your selection:")
