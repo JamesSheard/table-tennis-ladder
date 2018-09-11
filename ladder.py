@@ -49,7 +49,8 @@ class Ladder:
             f = open("ladder/ladder_state.txt")
             contents = f.read().split("\n")
             for line in contents:
-                self.table.append(player(line))
+                x = line.split()
+                self.table.append(player(x[0], x[1]))
             f.close()
 
         except:
@@ -61,9 +62,9 @@ class Ladder:
         f.truncate(0)
         for player in self.table:
             if self.table.index(player) == len(self.table) - 1:
-                f.write(player.name)
+                f.write(player.name + " " + player.rating)
             else:
-                f.write(player.name + "\n")
+                f.write(player.name + " " +  player.rating + "\n")
 
         f.close()
         return

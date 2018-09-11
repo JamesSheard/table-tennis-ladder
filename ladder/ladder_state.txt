@@ -1,12 +1,5 @@
-Mo
-Gary
-Little_mo
-Mike
-Mel
-James
-Dan
-Carl
-Ben
-Jimbo
-Jim
-Gazza
+Mo 1850
+Gary 1750
+Little_mo 1500
+Mike 1250
+Mel 1000
