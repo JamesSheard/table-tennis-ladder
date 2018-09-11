@@ -36,4 +36,5 @@ We have some unit tests written. This will test if logic works.
 ### How to run
 |Command|Description|
 |-|-|
-|python test_ladder.py|Runs the test for the ladder file|
+|python test_ladder.py|Runs the tests for the ladder file|
+|python test_user_interface.py|Runs the tests for the user interface file|
