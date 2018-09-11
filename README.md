@@ -25,3 +25,7 @@ pip2 install PrettyTable
 |python main.py --getladder|Get's the current state of the ladder|
 |python main.py --help|Help file in CLI|
   
+## Testing
+
+### How to run
+|python test_ladder.py|Runs the test for the ladder file|
