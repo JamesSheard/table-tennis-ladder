@@ -31,14 +31,18 @@ class Ladder:
         elif winner_pos == len(self.table):
             self.table.insert(loser_pos, player(winner_name))
 
+        elif loser_pos == len(self.table) and winner_pos != len(self.table):
+            self.table.append(player(loser_name))
+
         else:
             self.table.insert(loser_pos, player(winner_name))
             self.table.pop(winner_pos + 1)
 
     def player_in_ladder(self, name):
-        if name in self.table:
-            return True
-        return False
+        for player in self.table:
+            if player.name == name:
+                return True
+            return False
 
     def read_state(self):
         try:
