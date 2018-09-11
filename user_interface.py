@@ -29,7 +29,8 @@ class Interface:
 
     def print_help(self):
         f = open("help/help.txt")
-        print f.read()
+        contents = f.read()
+        print contents
         f.close()
 
     def validate_input(self, name):
