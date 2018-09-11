@@ -10,7 +10,9 @@ def main():
     try:
         if user_interface.unix_args():
             winner_name, loser_name = sys.argv[2], sys.argv[4]
-
+            if winner_name == loser_name:
+                print "Error: You have entered the same name twice."
+                return False
             if user_interface.validate_input(winner_name) or user_interface.validate_input(loser_name):
                 return False
 

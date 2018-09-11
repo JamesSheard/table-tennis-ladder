@@ -1,6 +1,7 @@
 import unittest
 from user_interface import Interface
-
+import StringIO
+import sys
 
 class TestUserInterfaceMethods(unittest.TestCase):
 
@@ -62,7 +63,9 @@ class TestUserInterfaceMethods(unittest.TestCase):
             ["Harry", False],
             ["Jam<e>s", True],
             ["Tom_Dick_and_Harry", False],
-            ["Tom Dick and Harry", False]
+            ["Tom Dick and Harry", False],
+            ["Tom_Dick_Harry_and_James", True],
+            ["123123321321", False]
         ]
 
         for tc in test_cases:
@@ -70,6 +73,16 @@ class TestUserInterfaceMethods(unittest.TestCase):
             expected = tc[1]
             actual = self.user_interface.validate_input(input)
             self.assertEqual(expected, actual)
+
+    def test_print_help(self):
+        captured_output = StringIO.StringIO()
+        sys.stdout = captured_output
+        self.user_interface.print_help()
+        expected = 610
+        # 610 is the length of the help file.
+        # TODO: This is properly shonk.
+
+        self.assertEqual(len(captured_output.getvalue()), expected)
 
 
 if __name__ == '__main__':

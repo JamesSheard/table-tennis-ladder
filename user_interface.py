@@ -29,12 +29,16 @@ class Interface:
 
     def print_help(self):
         f = open("help/help.txt")
-        contents = f.read()
-        print contents
+        print f.read()
         f.close()
 
     def validate_input(self, name):
         invalid_chars = set(string.punctuation.replace("_", ""))
+
+        if len(name) > 20:
+            print "Your name is too long."
+            return True
+
         if any(char in invalid_chars for char in name):
             print "Name contains invalid characters. Please use only letters, spaces and underscores."
             return True
@@ -48,6 +52,10 @@ class Interface:
     def get_names(self):
         winner_name = raw_input("Please enter the winner: ").lower()
         loser_name = raw_input("Please enter the loser: ").lower()
+
+        if winner_name == loser_name:
+            print "Error: You have entered the same name twice."
+            return winner_name, loser_name, False
 
         if self.validate_input(winner_name) or self.validate_input(loser_name):
             return winner_name, loser_name, False

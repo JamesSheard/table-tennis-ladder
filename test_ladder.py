@@ -1,6 +1,8 @@
+import sys
 import unittest
 from ladder import Ladder
 from player import player
+import StringIO
 
 
 class TestLadderMethods(unittest.TestCase):
@@ -101,6 +103,17 @@ class TestLadderMethods(unittest.TestCase):
 
         for x in range(0, len(self.ladder.table)):
             self.assertEqual(self.ladder.table[x].name, expected_table[x].name)
+
+    def test_print_ladder(self):
+        captured_output = StringIO.StringIO()
+        sys.stdout = captured_output
+        self.ladder.print_ladder()
+        expected_len = 144
+        # 144 is the number of characters in the leaderboard
+        # TODO: This is properly shonk.
+
+
+        self.assertEqual(len(captured_output.getvalue()), expected_len)
 
 
 if __name__ == "__main__":
