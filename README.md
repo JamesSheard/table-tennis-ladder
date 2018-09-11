@@ -17,11 +17,20 @@ pip2 install PrettyTable
 
 ## How to use
 
-|Command|What it does|
-|-|-|
-|python main.py to run the program| Runs the program and defaults to the help|
-|python main.py --interactive| Runs the user interface|
-|python main.py --win <name> --lose <name>|Sets who won and lost the game. Both variables needed|
-|python main.py --getladder|Get's the current state of the ladder|
-|python main.py --help|Help file in CLI|
+Python command:
+python main.py
+
+Example use:
+python main.py --i
+
+|Arguements|Longer Arg|What it does|
+|-|-|-|
+|-i|--interactive| Runs the user interface|
+|-w <name> -l <name>|--win <name> --lose <name>|Sets who won and lost the game. Both variables needed|
+|-gl|--getladder|Get's the current state of the ladder|
+|-h|--help|Help file in CLI|
   
+## Testing
+
+### How to run
+|python test_ladder.py|Runs the test for the ladder file|
