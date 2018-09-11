@@ -35,7 +35,7 @@ class TestLadderMethods(unittest.TestCase):
             player("Gazza"),
             player("Carlson")]
 
-        self.ladder.add_new_player("Gazza", "Carlson")
+        self.ladder.add_new_score("Gazza", "Carlson")
 
         for x in range(0, len(self.ladder.table)):
             self.assertEqual(self.ladder.table[x].name, expected_table[x].name)
@@ -56,7 +56,7 @@ class TestLadderMethods(unittest.TestCase):
             player("Bill"),
             player("Kev")]
 
-        self.ladder.add_new_player("Gazza", "Bill")
+        self.ladder.add_new_score("Gazza", "Bill")
 
         for x in range(0, len(self.ladder.table)):
             self.assertEqual(self.ladder.table[x].name, expected_table[x].name)
@@ -77,7 +77,7 @@ class TestLadderMethods(unittest.TestCase):
             player("Kev"),
             player("Gazza")]
 
-        self.ladder.add_new_player("John", "Gazza")
+        self.ladder.add_new_score("John", "Gazza")
 
         for x in range(0, len(self.ladder.table)):
             self.assertEqual(self.ladder.table[x].name, expected_table[x].name)
@@ -97,7 +97,7 @@ class TestLadderMethods(unittest.TestCase):
             player("Bob"),
             player("Kev")]
 
-        self.ladder.add_new_player("Bill", "John")
+        self.ladder.add_new_score("Bill", "John")
 
         for x in range(0, len(self.ladder.table)):
             self.assertEqual(self.ladder.table[x].name, expected_table[x].name)

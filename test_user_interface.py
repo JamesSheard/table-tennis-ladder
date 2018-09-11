@@ -57,6 +57,20 @@ class TestUserInterfaceMethods(unittest.TestCase):
             expected = tc[1]
             self.assertEqual(expected, self.user_interface.is_interactive_mode())
 
+    def test_validate_input(self):
+        test_cases = [
+            ["Harry", False],
+            ["Jam<e>s", True],
+            ["Tom_Dick_and_Harry", False],
+            ["Tom Dick and Harry", False]
+        ]
+
+        for tc in test_cases:
+            input = tc[0]
+            expected = tc[1]
+            actual = self.user_interface.validate_input(input)
+            self.assertEqual(expected, actual)
+
 
 if __name__ == '__main__':
     unittest.main()

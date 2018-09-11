@@ -8,13 +8,13 @@ class Ladder:
     def __init__(self):
         self.read_state()
 
-    def get_ladder(self):
+    def print_ladder(self):
         formatted_table = PrettyTable(["Name", "Rank"])
         for player in self.table:
             formatted_table.add_row([player.name, self.table.index(player) + 1])
         print formatted_table
 
-    def add_new_player(self, winner_name, loser_name):
+    def add_new_score(self, winner_name, loser_name):
         loser_pos, winner_pos = len(self.table), len(self.table)
         winner_name, loser_name = winner_name.capitalize(), loser_name.capitalize()
 

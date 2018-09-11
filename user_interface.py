@@ -58,12 +58,12 @@ class Interface:
         player_entered = self.get_selection()
 
         if player_entered == "1":
-            ladder.get_ladder()
+            ladder.print_ladder()
         elif player_entered == "2":
             winner_name, loser_name, valid = self.get_names()
             if valid != True:
                 return False
 
-            ladder.add_new_player(winner_name, loser_name)
-            ladder.get_ladder()
+            ladder.add_new_score(winner_name, loser_name)
+            ladder.print_ladder()
             ladder.write_state()
