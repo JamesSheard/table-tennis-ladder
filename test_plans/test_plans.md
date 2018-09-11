@@ -118,6 +118,23 @@
     - *Outcomes*
         - Error - The user is warned that they have entered invalid characters.
         - The ladder's state remains the same.
-        
 
+
+#### - Either player is entered using only numeric characters.
+    - *Steps*
+        - `python main.py --win 01189 --lose Player_2`
+        - OR
+        - `python main.py -w 01189 -l Player_2`
+    - *Outcomes*
+        - Player is entered into the leaderboard successfully.
+        - Ladder is written to state file.
+
+#### - Either player is entered using a name that is longer than 20 characters..
+    - *Steps*
+        - `python main.py --win qwertyuioplkjhgfdsazxc --lose Player_2`
+        - OR
+        - `python main.py -w qwertyuioplkjhgfdsazxc -l Player_2`
+    - *Outcomes*
+        - Error - The user is warned that they have entered a name which is too long.
+        - The ladder's state remains the same.
 
