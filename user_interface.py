@@ -27,6 +27,12 @@ class Interface:
             return True
         return False
 
+    def is_tournament_mode(self):
+        if self.args[1] == "--tournament" or self.args[1] == "-t":
+            return True
+        return False
+
+
     def print_help(self):
         f = open("help/help.txt")
         contents = f.read()
