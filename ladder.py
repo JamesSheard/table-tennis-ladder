@@ -9,9 +9,9 @@ class Ladder:
         self.read_state()
 
     def print_ladder(self):
-        formatted_table = PrettyTable(["Name", "Rank"])
+        formatted_table = PrettyTable(["Rank", "Name", "Rating"])
         for player in self.table:
-            formatted_table.add_row([player.name, self.table.index(player) + 1])
+            formatted_table.add_row([self.table.index(player) + 1, player.name, player.rating])
         print formatted_table
 
     def add_new_score(self, winner_name, loser_name):
@@ -64,7 +64,7 @@ class Ladder:
             if self.table.index(player) == len(self.table) - 1:
                 f.write(player.name + " " + player.rating)
             else:
-                f.write(player.name + " " +  player.rating + "\n")
+                f.write(player.name + " " + player.rating + "\n")
 
         f.close()
         return
