@@ -7,14 +7,17 @@ Used to track your table tennis rankings within Infinity Works.
 Commands:
 
 python main.py --win <name> --lose <name>
+python main.py -w <name> -l <name>
 When a game is played, use this command to input the winner and loser.
 
 
 python main.py --getladder
+python main.py -gl
 Use this command to check the current ladder rankings.
 
 
 python main.py --interactive
+python main.py -i
 Use this command to use the menu in interactive mode.
 
 python test_ladder.py
@@ -22,4 +25,5 @@ Use this command to test the ladder class.
 
 
 python main.py --help
+python main.py -h
 Check help file.
