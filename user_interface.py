@@ -8,9 +8,11 @@ class Interface:
         self.args = args
 
     def unix_args(self):
-        if (self.args[1] == "--win" or self.args[1] == "-w") and (self.args[3] == "--lose" or self.args[3] == "-l"):
-            return True
-        return False
+        try:
+            if (self.args[1] == "--win" or self.args[1] == "-w") and (self.args[3] == "--lose" or self.args[3] == "-l"):
+                return True
+        except:
+            return False
 
     def with_leaderboard(self):
         try:
@@ -27,14 +29,18 @@ class Interface:
             return False
     
     def is_get_ladder(self):
-        if self.args[1] == "--getladder" or self.args[1] == "-gl":
-            return True
-        return False
+        try:
+            if self.args[1] == "--getladder" or self.args[1] == "-gl":
+                return True
+        except:
+            return False
 
     def is_get_help(self):
-        if self.args[1] == "--help" or self.args[1] == "-h":
-            return True
-        return False
+        try:
+            if self.args[1] == "--help" or self.args[1] == "-h":
+                return True
+        except:
+            return False
 
     def is_interactive_mode(self):
         if self.args[1] == "--interactive" or self.args[1] == "-i":
