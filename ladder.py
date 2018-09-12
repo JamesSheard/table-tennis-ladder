@@ -3,15 +3,18 @@ from prettytable import PrettyTable
 
 
 class Ladder:
+    file_name = ""
     table = []
 
-    def __init__(self):
-        self.read_state()
+    def __init__(self, ladder_name):
+        self.ladder_name = ladder_name
+        self.read_state(ladder_name)
 
     def print_ladder(self):
         formatted_table = PrettyTable(["Name", "Rank"])
         for player in self.table:
             formatted_table.add_row([player.name, self.table.index(player) + 1])
+        formatted_table.title = self.ladder_name
         print formatted_table
 
     def add_new_score(self, winner_name, loser_name):
@@ -44,9 +47,10 @@ class Ladder:
                 return True
             return False
 
-    def read_state(self):
+    def read_state(self, ladder_name):
+        self.file_name = "ladder/" + ladder_name + ".txt"
         try:
-            f = open("ladder/ladder_state.txt")
+            f = open(self.file_name)
             contents = f.read().split("\n")
             for line in contents:
                 self.table.append(player(line))
@@ -57,7 +61,7 @@ class Ladder:
             print "Could not find populated state file."
 
     def write_state(self):
-        f = open("ladder/ladder_state.txt", "w+")
+        f = open(self.file_name, "w+")
         f.truncate(0)
         for player in self.table:
             if self.table.index(player) == len(self.table) - 1:
