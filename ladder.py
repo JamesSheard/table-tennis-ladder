@@ -11,9 +11,13 @@ class Ladder:
         self.read_state(ladder_name)
 
     def list_ladders(self):
-        print "Getting into List Ladders \n\n"
-        files = os.listdir("ladders")
-        print files
+        files = os.listdir("ladder/")
+        ladder_names = [x[:-4] for x in files]
+        ladders_table = PrettyTable(["Ladder Names"])
+        for name in ladder_names:
+            ladders_table.add_row([name])
+
+        print ladders_table
 
 
     def print_ladder(self):
