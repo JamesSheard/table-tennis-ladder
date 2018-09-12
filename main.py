@@ -4,14 +4,8 @@ from ladder import Ladder
 
 
 def main():
-    ladder = None
     user_interface = Interface(sys.argv)
-
-    if user_interface.with_leaderboard():
-        lb_pos = user_interface.get_leaderboard_pos()
-        ladder = Ladder(sys.argv[lb_pos])
-    else:
-        ladder = Ladder("ladder_state")
+    ladder = select_ladder(user_interface)
 
     try:
         if user_interface.is_get_ladder():
@@ -31,9 +25,11 @@ def main():
 
             if winner_name == loser_name:
                 print "Error: You have entered the same name twice."
+                exit_code(1)
                 return False
 
             if user_interface.validate_input(winner_name) or user_interface.validate_input(loser_name):
+                exit_code(1)
                 return False
 
             ladder.add_new_score(winner_name, loser_name)
@@ -42,12 +38,20 @@ def main():
             exit_code(0)
 
         else:
-            print "Incorrect parameters. Use `pythom main.py --help` to view commands"
+            print "Incorrect parameters. Use `python main.py --help` to view commands"
             exit_code(1)
 
     except:
         user_interface.print_help()
         exit_code(0)
+
+
+def select_ladder(ui):
+    if ui.with_leaderboard():
+        lb_pos = ui.get_leaderboard_pos()
+        return Ladder(sys.argv[lb_pos])
+    else:
+        return Ladder("ladder_state")
 
 
 def exit_code(code):

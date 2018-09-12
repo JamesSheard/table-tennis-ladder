@@ -19,7 +19,6 @@ class Ladder:
 
         print ladders_table
 
-
     def print_ladder(self):
         formatted_table = PrettyTable(["Name", "Rank"])
         for player in self.table:
