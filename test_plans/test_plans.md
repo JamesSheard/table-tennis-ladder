@@ -3,13 +3,29 @@
 ### Scenarios:
 
 ### **Showing league table**
-#### - When requested with `--getladder` or `-gl`, the league table will show.
+#### - When requested with `--getladder` or `-gl`, the global league table will show.
     - *Steps*
         - `python main.py --getladder`
         - OR
         - `python main.py -gl`
     - *Outcomes*
         - Ladder is displayed in terminal.
+
+#### - When a specific league table is requested, it will print in the terminal.
+    - *Steps*
+        - `python main.py --getladder --leaderboard testing
+        OR
+        - `python main.py --getladder -lb testing
+    - *Outcomes*
+        - League table 'testing' is printed in terminal.
+
+#### - When requested, all league tables will be printed to the terminal.
+    - *Steps*
+        - `python main.py --listladders`
+        OR
+        - `python main.py -ll`
+    - *Outcomes*
+        - List of league tables will be printed in terminal.
 
 
 ### **Showing help**
@@ -21,26 +37,11 @@
     - *Outcomes*
         - The help file is displayed in the terminal.
 
-
 #### - When the main program is run with no parameters, the help will show.
     - *Steps*
         - `python main.py`
     - *Outcomes*
         - The help file is displayed in the terminal.
-
-
-### **Interactive Mode:**
-#### - When requested with `--interactive` or `-i`, interactive mode will be enabled.
-    - *Steps*
-        - `python main.py --interactive`
-        OR 
-        - `python main.py -i`
-    - *Outcomes*
-        - Interactive mode is enabled. The user is prompted to either
-            - `Show Table`
-            - `Enter New Score`
-        - Upon choosing `Enter New Score` 
-            - Defer to `Playing a Game` test plan. 
 
 
 ### **Playing a game:**
@@ -137,4 +138,12 @@
     - *Outcomes*
         - Error - The user is warned that they have entered a name which is too long.
         - The ladder's state remains the same.
-
+        
+#### - Game is input with a leaderboard selected.
+    - *Steps*
+        - 'python main.py --win Player_1 --lose Player_2 --leaderboard testing`
+        OR
+        - `python main.py --win Player_1 --lose Player_2 --lb testing`
+    - *Outcomes*
+        - Game will be played using the same logic displayed above.
+        - Player positions will be modified in the 'testing' league.

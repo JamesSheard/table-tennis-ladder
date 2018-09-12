@@ -2,10 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="03068497-28c0-4085-ad65-88f518c7d99f" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ladder/Taste_Card_LB.txt" beforeDir="false" afterPath="$PROJECT_DIR$/ladder/Taste_Card_LB.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ladder/ladder_state.txt" beforeDir="false" afterPath="$PROJECT_DIR$/ladder/ladder_state.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test_plans/test_plans.md" beforeDir="false" afterPath="$PROJECT_DIR$/test_plans/test_plans.md" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -104,11 +101,11 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="test_plans.md" pinned="false" current-in-tab="false">
+          <file leaf-file-name="test_plans.md" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/test_plans/test_plans.md">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="1605">
-                  <caret line="107" column="16" selection-start-line="107" selection-start-column="16" selection-end-line="107" selection-end-column="16" />
+                <state relative-caret-position="416">
+                  <caret line="148" column="68" selection-start-line="148" selection-start-column="68" selection-end-line="148" selection-end-column="68" />
                 </state>
               </provider>
             </entry>
@@ -122,7 +119,7 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name=".gitignore" pinned="false" current-in-tab="true">
+          <file leaf-file-name=".gitignore" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/.gitignore">
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="45">
@@ -177,7 +174,6 @@
       <list>
         <option value="$PROJECT_DIR$/ladder/Test Code/main.py" />
         <option value="$PROJECT_DIR$/rating.py" />
-        <option value="$PROJECT_DIR$/test_plans/test_plans.md" />
         <option value="$PROJECT_DIR$/ladder/ladder_state.txt" />
         <option value="$PROJECT_DIR$/test_ladder.py" />
         <option value="$PROJECT_DIR$/test_user_interface.py" />
@@ -187,6 +183,7 @@
         <option value="$PROJECT_DIR$/user_interface.py" />
         <option value="$PROJECT_DIR$/main.py" />
         <option value="$PROJECT_DIR$/.gitignore" />
+        <option value="$PROJECT_DIR$/test_plans/test_plans.md" />
       </list>
     </option>
   </component>
@@ -213,6 +210,11 @@
               <item name="table-tennis-ladder" type="b2602c69:ProjectViewProjectNode" />
               <item name="table-tennis-ladder" type="462c0819:PsiDirectoryNode" />
               <item name="ladder" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="table-tennis-ladder" type="b2602c69:ProjectViewProjectNode" />
+              <item name="table-tennis-ladder" type="462c0819:PsiDirectoryNode" />
+              <item name="test_plans" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -558,21 +560,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/test_plans/test_plans.md">
-      <provider editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="SPLIT">
-          <first_editor relative-caret-position="440">
-            <caret line="42" column="12" selection-start-line="42" selection-start-column="12" selection-end-line="42" selection-end-column="12" />
-          </first_editor>
-          <second_editor />
-        </state>
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1605">
-          <caret line="107" column="16" selection-start-line="107" selection-start-column="16" selection-end-line="107" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/test_user_interface.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="48">
@@ -642,6 +629,21 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="45">
           <caret line="3" column="6" selection-start-line="3" selection-start-column="6" selection-end-line="3" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test_plans/test_plans.md">
+      <provider editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="440">
+            <caret line="42" column="12" selection-start-line="42" selection-start-column="12" selection-end-line="42" selection-end-column="12" />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="416">
+          <caret line="148" column="68" selection-start-line="148" selection-start-column="68" selection-end-line="148" selection-end-column="68" />
         </state>
       </provider>
     </entry>
