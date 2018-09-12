@@ -1,6 +1,6 @@
 from player import player
 from prettytable import PrettyTable
-
+import os
 
 class Ladder:
     file_name = ""
@@ -9,6 +9,12 @@ class Ladder:
     def __init__(self, ladder_name):
         self.ladder_name = ladder_name
         self.read_state(ladder_name)
+
+    def list_ladders(self):
+        print "Getting into List Ladders \n\n"
+        files = os.listdir("ladders")
+        print files
+
 
     def print_ladder(self):
         formatted_table = PrettyTable(["Name", "Rank"])

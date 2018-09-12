@@ -6,7 +6,7 @@ from ladder import Ladder
 def main():
     ladder = None
     user_interface = Interface(sys.argv)
-    print sys.argv
+
     try:
         if user_interface.unix_args():
             if user_interface.with_leaderboard():
@@ -34,6 +34,9 @@ def main():
 
         elif user_interface.is_interactive_mode():
             user_interface.interactive_mode(ladder)
+
+        elif user_interface.is_list_ladders():
+            ladder.list_ladders()
 
         else:
             print "Incorrect parameters. Use `pythom main.py --help` to view commands"

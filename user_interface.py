@@ -18,6 +18,13 @@ class Interface:
                 return True
         except:
             return False
+
+    def is_list_ladders(self):
+        try:
+            if self.args[1] == "--listladders" or self.args[1] == "-ll":
+                return True
+        except:
+            return False
     
     def is_get_ladder(self):
         if self.args[1] == "--getladder" or self.args[1] == "-gl":
