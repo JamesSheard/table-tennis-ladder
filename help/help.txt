@@ -16,9 +16,11 @@ python main.py -gl
 Use this command to check the current ladder rankings.
 
 
-python main.py --interactive
-python main.py -i
-Use this command to use the menu in interactive mode.
+-lb <board_name> or --leaderboard <board_name>
+These are used at the end of a string in order to access your local leaderboard
+
+Example use of local leaderboards:
+python main.py -w James -l Mike -lb InfinityWorks
 
 python test_ladder.py
 Use this command to test the ladder class.
