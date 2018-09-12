@@ -8,14 +8,12 @@ class Interface:
         self.args = args
 
     def unix_args(self):
-        if (self.args[1] == "--win" or self.args[1] == "-w") \
-                and (self.args[3] == "--lose" or self.args[3] == "-l") \
-                and (self.args[5] == "--leaderboard" or self.args[5] == "-lb"):
+        if (self.args[1] == "--win" or self.args[1] == "-w") and (self.args[3] == "--lose" or self.args[3] == "-l"):
             return True
         return False
 
-    def unix_args_with_leaderboard(self):
-        if (self.args[5] == "--leaderboard" or self.args[5] == "-lb"):
+    def with_leaderboard(self):
+        if self.args[5] == "--leaderboard" or self.args[5] == "-lb":
             return True
         return False
     

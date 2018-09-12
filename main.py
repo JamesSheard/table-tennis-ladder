@@ -9,7 +9,14 @@ def main():
 
     try:
         if user_interface.unix_args():
-            ladder = Ladder(sys.argv[6])
+            if user_interface.with_leaderboard():
+                print "In - With leaderboard selected"
+                ladder = Ladder(sys.argv[6])
+            else:
+                print "In - NO Leaderboard selected"
+                ladder = Ladder("ladder_state")
+                print "No ladder selected. Defaulting to global leaderboard..."
+
             winner_name, loser_name = sys.argv[2], sys.argv[4]
             if winner_name == loser_name:
                 print "Error: You have entered the same name twice."
