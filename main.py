@@ -16,12 +16,15 @@ def main():
     try:
         if user_interface.is_get_ladder():
             ladder.print_ladder()
+            exit_code(0)
 
         elif user_interface.is_get_help():
             user_interface.print_help()
+            exit_code(0)
 
         elif user_interface.is_list_ladders():
             ladder.list_ladders()
+            exit_code(0)
 
         elif user_interface.unix_args():
             winner_name, loser_name = sys.argv[2], sys.argv[4]
@@ -36,17 +39,21 @@ def main():
             ladder.add_new_score(winner_name, loser_name)
             ladder.print_ladder()
             ladder.write_state()
+            exit_code(0)
 
         else:
             print "Incorrect parameters. Use `pythom main.py --help` to view commands"
+            exit_code(1)
 
     except:
         user_interface.print_help()
+        exit_code(0)
+
 
 def exit_code(code):
     if code < 0 or code > 3:
         print "invalid exit code"
-    print ""
+    print "Program quit with exit code: " + str(code)
 
 
 if __name__ == "__main__":
