@@ -6,7 +6,7 @@ class admin:
 
     def read_state(self):
         try:
-            f = open("ladder/ladder_state.txt")
+            f = open("ladder/global.txt")
             contents = f.read().split("\n")
             for line in contents:
                 self.table.append(player(line))
@@ -29,7 +29,7 @@ class admin:
             print "Player does not exist in the ladder"
 
     def write_state(self):
-        f = open("ladder/ladder_state.txt", "w+")
+        f = open("ladder/global.txt", "w+")
         f.truncate(0)
         for player in self.table:
             if self.table.index(player) == len(self.table) - 1:

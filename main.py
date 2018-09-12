@@ -51,7 +51,7 @@ def select_ladder(ui):
         lb_pos = ui.get_leaderboard_pos()
         return Ladder(sys.argv[lb_pos])
     else:
-        return Ladder("ladder_state")
+        return Ladder("global")
 
 
 def exit_code(code):
