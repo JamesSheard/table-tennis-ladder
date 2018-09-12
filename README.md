@@ -21,14 +21,14 @@ Python command:
 python main.py
 
 Example use:
-python main.py --i
+python main.py -w Dan -l Ben -lb Infinity_Works_Internal
 
 |Arguements|Longer Arg|What it does|
 |-|-|-|
-|-i|--interactive| Runs the user interface|
 |-w <name> -l <name>|--win <name> --lose <name>|Sets who won and lost the game. Both variables needed|
 |-gl|--getladder|Get's the current state of the ladder|
 |-h|--help|Help file in CLI|
+|-lb|--leaderboard|Selects which leaderboard to save to|
   
 ## Testing
 We have some unit tests written. This will test if logic works.
