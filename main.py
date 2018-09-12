@@ -6,7 +6,7 @@ from ladder import Ladder
 def main():
     ladder = None
     user_interface = Interface(sys.argv)
-
+    print sys.argv
     try:
         if user_interface.unix_args():
             if user_interface.with_leaderboard():
