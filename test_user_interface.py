@@ -3,6 +3,7 @@ from user_interface import Interface
 import StringIO
 import sys
 
+
 class TestUserInterfaceMethods(unittest.TestCase):
 
     def setUp(self):
