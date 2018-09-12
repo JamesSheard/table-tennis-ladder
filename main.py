@@ -10,10 +10,8 @@ def main():
     try:
         if user_interface.unix_args():
             if user_interface.with_leaderboard():
-                print "In - With leaderboard selected"
                 ladder = Ladder(sys.argv[6])
             else:
-                print "In - NO Leaderboard selected"
                 ladder = Ladder("ladder_state")
                 print "No ladder selected. Defaulting to global leaderboard..."
 

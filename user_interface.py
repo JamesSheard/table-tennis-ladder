@@ -13,9 +13,11 @@ class Interface:
         return False
 
     def with_leaderboard(self):
-        if self.args[5] == "--leaderboard" or self.args[5] == "-lb":
-            return True
-        return False
+        try:
+            if self.args[5] == "--leaderboard" or self.args[5] == "-lb":
+                return True
+        except:
+            return False
     
     def is_get_ladder(self):
         if self.args[1] == "--getladder" or self.args[1] == "-gl":
