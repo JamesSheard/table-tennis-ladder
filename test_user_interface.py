@@ -47,23 +47,12 @@ class TestUserInterfaceMethods(unittest.TestCase):
             expected = tc[1]
             self.assertEqual(expected, self.user_interface.is_get_help())
 
-    def test_is_interactive_mode(self):
-        test_cases = [
-            [["main.py", "--interactive"], True],
-            [["main.py", "-i"], True],
-            [["foo", "bar"], False]
-        ]
-
-        for tc in test_cases:
-            self.user_interface.args = tc[0]
-            expected = tc[1]
-            self.assertEqual(expected, self.user_interface.is_interactive_mode())
 
     def test_print_help(self):
         captured_output = StringIO.StringIO()
         sys.stdout = captured_output
         self.user_interface.print_help()
-        expected = 610
+        expected = 722
         # 610 is the length of the help file.
         # TODO: This is properly shonk.
 

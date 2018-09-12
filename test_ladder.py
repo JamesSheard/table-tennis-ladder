@@ -8,7 +8,7 @@ import StringIO
 class TestLadderMethods(unittest.TestCase):
 
     def setUp(self):
-        self.ladder = Ladder()
+        self.ladder = Ladder("Test Ladder")
         self.ladder.table = [
             player("Jim"),
             player("John"),
@@ -108,7 +108,7 @@ class TestLadderMethods(unittest.TestCase):
         captured_output = StringIO.StringIO()
         sys.stdout = captured_output
         self.ladder.print_ladder()
-        expected_len = 144
+        expected_len = 198
         # 144 is the number of characters in the leaderboard
         # TODO: This is properly shonk.
 

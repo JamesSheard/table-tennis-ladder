@@ -11,6 +11,8 @@ class Interface:
         try:
             if (self.args[1] == "--win" or self.args[1] == "-w") and (self.args[3] == "--lose" or self.args[3] == "-l"):
                 return True
+            else:
+                return False
         except:
             return False
 
@@ -32,6 +34,8 @@ class Interface:
         try:
             if self.args[1] == "--listladders" or self.args[1] == "-ll":
                 return True
+            else:
+                return False
         except:
             return False
     
@@ -39,6 +43,8 @@ class Interface:
         try:
             if self.args[1] == "--getladder" or self.args[1] == "-gl":
                 return True
+            else:
+                return False
         except:
             return False
 
@@ -46,6 +52,8 @@ class Interface:
         try:
             if self.args[1] == "--help" or self.args[1] == "-h":
                 return True
+            else:
+                return False
         except:
             return False
 
