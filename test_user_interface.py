@@ -53,7 +53,7 @@ class TestUserInterfaceMethods(unittest.TestCase):
         sys.stdout = captured_output
         self.user_interface.print_help()
         expected = 722
-        # 610 is the length of the help file.
+        # 722 is the length of the help file.
         # TODO: This is properly shonk.
 
         self.assertEqual(len(captured_output.getvalue()), expected)
