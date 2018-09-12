@@ -85,16 +85,16 @@ class Ladder:
         return
 
     def write_to_html(self):
-        html = """<table style="width:100%">
-        \t<tr>
-        \t\t<th>Name</th>
-        \t\t<th>Rank</th>
-        \t</tr>"""
+        html = "<table style=\"width:100%\">" \
+                "\n\t<tr>" \
+                "\n\t\t<th>Name</th>" \
+                "\n\t\t<th>Rank</th>" \
+                "\n\t</tr>\n"
 
         for p in self.table:
             html = html + "\t<tr>\n"
             html = html + "\t\t<td>" + p.name + "</td>\n"
-            html = html + "\t\t<td>" + str(self.table.index(p)) + "</td>\n"
+            html = html + "\t\t<td>" + str(self.table.index(p) + 1) + "</td>\n"
             html = html + "\t</tr>\n"
         html += "</table>\n"
 
