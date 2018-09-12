@@ -7,8 +7,9 @@ def main():
     ladder = None
     user_interface = Interface(sys.argv)
 
-    if user_interface.unix_args() and user_interface.with_leaderboard():
-        ladder = Ladder(sys.argv[6])
+    if user_interface.with_leaderboard():
+        lb_pos = user_interface.get_leaderboard_pos()
+        ladder = Ladder(sys.argv[lb_pos])
     else:
         ladder = Ladder("ladder_state")
 
@@ -21,9 +22,6 @@ def main():
 
         elif user_interface.is_list_ladders():
             ladder.list_ladders()
-
-        elif user_interface.is_interactive_mode():
-            user_interface.interactive_mode(ladder)
 
         elif user_interface.unix_args():
             winner_name, loser_name = sys.argv[2], sys.argv[4]
