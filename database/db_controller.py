@@ -35,7 +35,7 @@ class Database:
     def get_leaderboard(self, leaderboard):
         query = "SELECT * FROM {leaderboard} ORDER BY Rank ASC;".format(leaderboard=leaderboard)
 
-    
+    # def insert_losing_player
 
 
 if __name__ == "__main__":
