@@ -1,6 +1,8 @@
 from player import player
 from prettytable import PrettyTable
+from html_generator import HtmlGenerator
 import os
+
 
 class Ladder:
     file_name = ""
@@ -70,6 +72,8 @@ class Ladder:
             print "Could not find populated state file."
 
     def write_state(self):
+        html_generator = HtmlGenerator(self.ladder_name, self.table)
+
         f = open(self.file_name, "w+")
         f.truncate(0)
         for player in self.table:
@@ -79,8 +83,8 @@ class Ladder:
                 f.write(player.name + "\n")
 
         f.close()
-
         self.write_to_html()
+        html_generator.write_html()
 
         return
 

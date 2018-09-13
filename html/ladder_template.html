@@ -22,47 +22,13 @@
                 </tr>
               </thead>
 
-            
+            #for @player in @players:
             <tr>
-                <td>John</td>
-                <td>1</td>
+                <td>@player.name</td>
+                <td>@player.rank</td>
             </tr>
-            
-            <tr>
-                <td>Mo</td>
-                <td>2</td>
-            </tr>
-            
-            <tr>
-                <td>Gary</td>
-                <td>3</td>
-            </tr>
-            
-            <tr>
-                <td>Little_mo</td>
-                <td>4</td>
-            </tr>
-            
-            <tr>
-                <td>Mike</td>
-                <td>5</td>
-            </tr>
-            
-            <tr>
-                <td>Jim</td>
-                <td>6</td>
-            </tr>
-            
-            <tr>
-                <td>Ben</td>
-                <td>7</td>
-            </tr>
-            
-            <tr>
-                <td>Dan</td>
-                <td>8</td>
-            </tr>
-                    </table>
+            #end
+        </table>
     </div>
 
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
