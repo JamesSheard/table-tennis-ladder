@@ -85,7 +85,9 @@ class Ladder:
         return
 
     def write_to_html(self):
-        html = "<table style=\"width:100%\">" \
+        html = "<head>\n" \
+                "</head>\n" \
+                "<table style=\"width:25%\" border=10 bordercolor=\"#D3D3D3\">" \
                 "\n\t<tr>" \
                 "\n\t\t<th>Name</th>" \
                 "\n\t\t<th>Rank</th>" \
@@ -97,6 +99,7 @@ class Ladder:
             html = html + "\t\t<td>" + str(self.table.index(p) + 1) + "</td>\n"
             html = html + "\t</tr>\n"
         html += "</table>\n"
+
 
         f = open(self.ladder_name + ".html", "w+")
         f.truncate(0)
