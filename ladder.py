@@ -83,25 +83,7 @@ class Ladder:
                 f.write(player.name + "\n")
 
         f.close()
-        self.write_to_html()
         html_generator.write_html()
 
         return
 
-    def write_to_html(self):
-        html = """<table style="width:100%">
-        \t<tr>
-        \t\t<th>Name</th>
-        \t\t<th>Rank</th>
-        \t</tr>"""
-
-        for p in self.table:
-            html = html + "\t<tr>\n"
-            html = html + "\t\t<td>" + p.name + "</td>\n"
-            html = html + "\t\t<td>" + str(self.table.index(p)) + "</td>\n"
-            html = html + "\t</tr>\n"
-        html += "</table>\n"
-
-        f = open(self.ladder_name + ".html", "w+")
-        f.truncate(0)
-        f.write(html)
