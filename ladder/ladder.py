@@ -1,6 +1,6 @@
-from player import player
+from player.player import player
 from prettytable import PrettyTable
-from html_generator import HtmlGenerator
+from html.html_generator import HtmlGenerator
 import os
 
 
@@ -13,7 +13,7 @@ class Ladder:
         self.read_state(ladder_name)
 
     def list_ladders(self):
-        files = os.listdir("ladder/")
+        files = os.listdir("ladder/state/")
         ladder_names = [x[:-4] for x in files]
         ladders_table = PrettyTable(["Ladder Names"])
         for name in ladder_names:
@@ -59,7 +59,7 @@ class Ladder:
             return False
 
     def read_state(self, ladder_name):
-        self.file_name = "ladder/" + ladder_name + ".txt"
+        self.file_name = "ladder/state/" + ladder_name + ".txt"
         try:
             f = open(self.file_name)
             contents = f.read().split("\n")

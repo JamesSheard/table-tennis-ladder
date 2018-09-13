@@ -1,7 +1,7 @@
 import sys
 import unittest
 from ladder import Ladder
-from player import player
+from player.player import player
 import StringIO
 
 

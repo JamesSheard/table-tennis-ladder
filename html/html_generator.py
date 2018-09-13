@@ -19,6 +19,6 @@ class HtmlGenerator:
         return template.render(locals(), loader=loader).encode('utf-8')
 
     def write_html(self):
-        with open(self.league_name + '.html', 'w') as f:
+        with open("html_output/" + self.league_name + '.html', 'w') as f:
             f.truncate(0)
             f.writelines(self.html)

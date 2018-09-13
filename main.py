@@ -1,6 +1,6 @@
 import sys
-from user_interface import Interface
-from ladder import Ladder
+from user_interface.user_interface import Interface
+from ladder.ladder import Ladder
 
 
 def main():
