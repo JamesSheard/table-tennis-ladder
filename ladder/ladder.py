@@ -13,7 +13,7 @@ class Ladder:
         self.read_state(ladder_name)
 
     def list_ladders(self):
-        files = os.listdir("ladder/state/")
+        files = os.listdir("ladder/state/") # TODO: move into static file / config object
         ladder_names = [x[:-4] for x in files]
         ladders_table = PrettyTable(["Ladder Names"])
         for name in ladder_names:
@@ -61,11 +61,10 @@ class Ladder:
     def read_state(self, ladder_name):
         self.file_name = "ladder/state/" + ladder_name + ".txt"
         try:
-            f = open(self.file_name)
-            contents = f.read().split("\n")
-            for line in contents:
-                self.table.append(player(line))
-            f.close()
+            with open(self.file_name) as f:
+                contents = f.read().split("\n")
+                for line in contents:
+                    self.table.append(player(line))
 
         except:
             self.table = []
@@ -74,15 +73,14 @@ class Ladder:
     def write_state(self):
         html_generator = HtmlGenerator(self.ladder_name, self.table)
 
-        f = open(self.file_name, "w+")
-        f.truncate(0)
-        for player in self.table:
-            if self.table.index(player) == len(self.table) - 1:
-                f.write(player.name)
-            else:
-                f.write(player.name + "\n")
+        with open(self.file_name, "w+") as f:
+            f.truncate(0)
+            for player in self.table:
+                if self.table.index(player) == len(self.table) - 1:
+                    f.write(player.name)
+                else:
+                    f.write(player.name + "\n")
 
-        f.close()
         html_generator.write_html()
 
         return

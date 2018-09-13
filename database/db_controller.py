@@ -30,12 +30,30 @@ class Database:
 
     def insert_winning_player(self, leaderboard, loser_pos, winner_name):
         query = "UPDATE {leaderboard} SET rank = rank + 1 WHERE rank > {loser_pos};" \
-                "INSERT INTO {leaderboard} (rank, name) VALUES  ({loser_pos},  '{winner_name}');".format(leaderboard=leaderboard, loser_pos=loser_pos, winner_name=winner_name)
+                "INSERT INTO {leaderboard} (rank, name) VALUES  ({loser_pos},  '{winner_name}');"\
+                .format(leaderboard=leaderboard, loser_pos=loser_pos, winner_name=winner_name)
 
     def get_leaderboard(self, leaderboard):
-        query = "SELECT * FROM {leaderboard} ORDER BY Rank ASC;".format(leaderboard=leaderboard)
+        query = "SELECT * FROM {leaderboard} ORDER BY Rank ASC;"\
+                .format(leaderboard=leaderboard)
 
-    # def insert_losing_player
+    def append_player(self, leaderboard, player_name):
+        query = "INSERT INTO {leaderboard}(rank, name) VALUES " \
+                "(((SELECT count(rank) FROM {leaderboard}) + 1), {player_name});"\
+                .format(leaderboard=leaderboard, player_name=player_name)
+
+    def insert_two_new_players(self, leaderboard, winner_name, loser_name):
+        self.append_player(leaderboard, winner_name)
+        self.append_player(leaderboard, loser_name)
+
+    def two_competing_player(self, leaderboard, winner_name, winner_pos, loser_pos):
+        query = "UPDATE {leaderboard} SET rank = rank + 1 WHERE rank > {loser_pos};" \
+                "INSERT INTO {leaderboard} (rank, name) VALUES ({loser_pos}, '{winner_name}');" \
+                "DELETE FROM {leaderboard} WHERE rank = {winner_pos};"\
+                .format(leaderboard=leaderboard,
+                        winner_name=winner_name,
+                        loser_pos=loser_pos,
+                        winner_pos=winner_pos + 1)  # TODO: Check this logic.
 
 
 if __name__ == "__main__":
