@@ -1,5 +1,7 @@
 import sqlite3
 
+from prettytable import PrettyTable
+
 
 class Database:
     #TODO:  Mike is very angry. Our SQL is injectable :D
@@ -37,6 +39,9 @@ class Database:
         query = "SELECT * FROM {leaderboard} ORDER BY Rank ASC;"\
                 .format(leaderboard=leaderboard)
 
+    def get_leaderboards(self):
+        query = "SELECT name FROM sqlite_master WHERE type='table';"
+
     def append_player(self, leaderboard, player_name):
         query = "INSERT INTO {leaderboard}(rank, name) VALUES " \
                 "(((SELECT count(rank) FROM {leaderboard}) + 1), {player_name});"\
@@ -57,7 +62,6 @@ class Database:
 
 
 if __name__ == "__main__":
-
     db = Database()
     db.create_league_table("TC")
     db.insert_row_league("TC", 1, "James")
@@ -67,5 +71,12 @@ if __name__ == "__main__":
     db.insert_row_league("TC", 5, "Dan")
 
     db.commit()
-    print db.view_league_table("TC")
+    # cache = db.view_league_table("TC")
+
+    formatted_table = PrettyTable(["Name", "Rank"])
+    for row in db.view_league_table("TC"):
+        formatted_table.add_row([row[1], row[0]])
+    formatted_table.title = "TC"
+    print formatted_table
+
     db.close()
