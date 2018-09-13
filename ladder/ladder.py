@@ -39,23 +39,33 @@ class Ladder:
         loser_pos, winner_pos = len(self.table), len(self.table)
         winner_name, loser_name = winner_name.capitalize(), loser_name.capitalize()
 
-        for play in self.table:
-            if play.name == loser_name:
-                loser_pos = self.table.index(play)
-            if play.name == winner_name:
-                winner_pos = self.table.index(play)
+        for name in self.table:
+            if name == loser_name:
+                loser_pos = self.table.index(name)
+            if name == winner_name:
+                winner_pos = self.table.index(name)
+
+        print "HERE -- \n\n"
+        print self.table
 
         if loser_pos == len(self.table) and winner_pos == len(self.table):
+            print "Into 2 new players \n\n\n"
             self.db.insert_two_new_players(self.ladder_name, winner_name, loser_name)
 
         elif winner_pos == len(self.table):
+            print "Into insert 1 new winner \n\n\n"
             self.db.insert_winning_player(self.ladder_name, loser_pos, winner_name)
 
         elif loser_pos == len(self.table) and winner_pos != len(self.table):
+            print "Into 1 new loser \n\n\n"
             self.db.append_player(self.ladder_name, loser_name)
 
         else:
+            print "Into 2 existing players \n\n\n"
             self.db.two_competing_player(self.ladder_name, winner_name, winner_pos, loser_name)
+
+        self.db.commit()
+        self.db.close()
 
     def player_in_ladder(self, name):
         for player in self.table:

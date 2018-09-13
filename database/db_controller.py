@@ -31,10 +31,11 @@ class Database:
         self.conn.close()
 
     def insert_winning_player(self, leaderboard, loser_pos, winner_name):
+        print "Into winning player\n\n\n"
         query = "UPDATE {leaderboard} SET rank = rank + 1 WHERE rank > {loser_pos};" \
                 "INSERT INTO {leaderboard} (rank, name) VALUES  ({loser_pos},  '{winner_name}');"\
                 .format(leaderboard=leaderboard, loser_pos=loser_pos, winner_name=winner_name)
-        self.conn.execute(query)
+        print self.conn.execute(query)
 
     def get_leaderboard(self, leaderboard):
         query = "SELECT * FROM {leaderboard} ORDER BY Rank ASC;"\
