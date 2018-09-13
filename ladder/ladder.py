@@ -45,21 +45,17 @@ class Ladder:
             if play.name == winner_name:
                 winner_pos = self.table.index(play)
 
-        # ------ - -- -  - -- -
-
         if loser_pos == len(self.table) and winner_pos == len(self.table):
-            self.table.append(player(winner_name))
-            self.table.append(player(loser_name))
+            self.db.insert_two_new_players(self.ladder_name, winner_name, loser_name)
 
         elif winner_pos == len(self.table):
-            self.table.insert(loser_pos, player(winner_name))
+            self.db.insert_winning_player(self.ladder_name, loser_pos, winner_name)
 
         elif loser_pos == len(self.table) and winner_pos != len(self.table):
-            self.table.append(player(loser_name))
+            self.db.append_player(self.ladder_name, loser_name)
 
         else:
-            self.table.insert(loser_pos, player(winner_name))
-            self.table.pop(winner_pos + 1)
+            self.db.two_competing_player(self.ladder_name, winner_name, winner_pos, loser_name)
 
     def player_in_ladder(self, name):
         for player in self.table:

@@ -34,6 +34,7 @@ class Database:
         query = "UPDATE {leaderboard} SET rank = rank + 1 WHERE rank > {loser_pos};" \
                 "INSERT INTO {leaderboard} (rank, name) VALUES  ({loser_pos},  '{winner_name}');"\
                 .format(leaderboard=leaderboard, loser_pos=loser_pos, winner_name=winner_name)
+        self.conn.execute(query)
 
     def get_leaderboard(self, leaderboard):
         query = "SELECT * FROM {leaderboard} ORDER BY Rank ASC;"\
@@ -61,6 +62,7 @@ class Database:
         query = "INSERT INTO {leaderboard}(rank, name) VALUES " \
                 "(((SELECT count(rank) FROM {leaderboard}) + 1), {player_name});"\
                 .format(leaderboard=leaderboard, player_name=player_name)
+        self.conn.execute(query)
 
     def insert_two_new_players(self, leaderboard, winner_name, loser_name):
         self.append_player(leaderboard, winner_name)
@@ -74,6 +76,7 @@ class Database:
                         winner_name=winner_name,
                         loser_pos=loser_pos,
                         winner_pos=winner_pos + 1)  # TODO: Check this logic.
+        self.conn.execute(query)
 
 
 if __name__ == "__main__":
