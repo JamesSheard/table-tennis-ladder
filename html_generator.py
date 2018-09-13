@@ -1,17 +1,24 @@
 from quik import FileLoader, Template
 
-loader = FileLoader('html')
-template = loader.load_template('ladder_template.html')
 
-players = [{'name': 'Matt', 'rank': 1},
-            {'name': 'Rob', 'rank': 2},
-            {'name': 'Mike', 'rank': 3},
-            {'name': 'James', 'rank': 4}]
+class HtmlGenerator:
+    def __init__(self, league_name, table):
+        self.league_name = league_name
+        self.table = table
+        self.html = self.build_html()
 
-group = "Hermes"
-# html = template.render(players,
-#                       loader=loader).encode('utf-8')
-html = template.render(locals(), loader=loader).encode('utf-8')
+    def build_html(self):
+        loader = FileLoader('html')
+        template = loader.load_template('ladder_template.html')
+        players = []
 
-with open(group + '.html', 'w') as f:
-    f.writelines(html)
+        for player in self.table:
+            players.append({'name': player.name,
+                            'rank': self.table.index(player) + 1})
+
+        return template.render(locals(), loader=loader).encode('utf-8')
+
+    def write_html(self):
+        with open(self.league_name + '.html', 'w') as f:
+            f.truncate(0)
+            f.writelines(self.html)
