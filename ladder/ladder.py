@@ -1,6 +1,8 @@
+from database.db_controller import Database
 from player.player import player
 from prettytable import PrettyTable
 from html.html_generator import HtmlGenerator
+
 import os
 
 
@@ -11,21 +13,26 @@ class Ladder:
     def __init__(self, ladder_name):
         self.ladder_name = ladder_name
         self.read_state(ladder_name)
+        self.db = Database()
 
     def list_ladders(self):
-        files = os.listdir("ladder/state/") # TODO: move into static file / config object
-        ladder_names = [x[:-4] for x in files]
-        ladders_table = PrettyTable(["Ladder Names"])
-        for name in ladder_names:
-            ladders_table.add_row([name])
+        leaderboards = self.db.get_leaderboards()
+        formatted_table = PrettyTable(["League Name"])
 
-        print ladders_table
+        for leagues in leaderboards:
+            formatted_table.add_row([leagues])
+
+        print formatted_table
+
 
     def print_ladder(self):
+        table = self.db.get_leaderboard(self.ladder_name)
         formatted_table = PrettyTable(["Name", "Rank"])
-        for player in self.table:
-            formatted_table.add_row([player.name, self.table.index(player) + 1])
+
+        for player in table:
+            formatted_table.add_row([player, table.index(player) + 1])
         formatted_table.title = self.ladder_name
+
         print formatted_table
 
     def add_new_score(self, winner_name, loser_name):

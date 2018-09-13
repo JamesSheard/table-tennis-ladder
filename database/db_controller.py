@@ -49,6 +49,13 @@ class Database:
 
     def get_leaderboards(self):
         query = "SELECT name FROM sqlite_master WHERE type='table';"
+        response = self.conn.execute(query)
+        leaderboards = []
+
+        for row in response:
+            leaderboards.append(row[0])
+
+        return leaderboards
 
     def append_player(self, leaderboard, player_name):
         query = "INSERT INTO {leaderboard}(rank, name) VALUES " \
