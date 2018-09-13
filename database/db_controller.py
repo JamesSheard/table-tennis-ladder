@@ -7,7 +7,7 @@ class Database:
         self.conn = sqlite3.connect('database/table_tennis.db')
 
     def create_league_table(self, league_name):
-        self.conn.execute("CREATE TABLE {league} (rank INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT)"
+        self.conn.execute("CREATE TABLE {league} (rank INTEGER, name TEXT)"
                           .format(league=league_name))
 
     def insert_row_league(self, league_name, rank_num, player_name):
@@ -27,6 +27,15 @@ class Database:
 
     def close(self):
         self.conn.close()
+
+    def insert_winning_player(self, leaderboard, loser_pos, winner_name):
+        query = "UPDATE {leaderboard} SET rank = rank + 1 WHERE rank > {loser_pos};" \
+                "INSERT INTO {leaderboard} (rank, name) VALUES  ({loser_pos},  '{winner_name}');".format(leaderboard=leaderboard, loser_pos=loser_pos, winner_name=winner_name)
+
+    def get_leaderboard(self, leaderboard):
+        query = "SELECT * FROM {leaderboard} ORDER BY Rank ASC;".format(leaderboard=leaderboard)
+
+    
 
 
 if __name__ == "__main__":
