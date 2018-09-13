@@ -12,8 +12,8 @@ class Ladder:
 
     def __init__(self, ladder_name):
         self.ladder_name = ladder_name
-        self.read_state(ladder_name)
         self.db = Database()
+        self.table = self.db.get_leaderboard(ladder_name)
 
     def list_ladders(self):
         leaderboards = self.db.get_leaderboards()
@@ -44,6 +44,8 @@ class Ladder:
                 loser_pos = self.table.index(play)
             if play.name == winner_name:
                 winner_pos = self.table.index(play)
+
+        # ------ - -- -  - -- -
 
         if loser_pos == len(self.table) and winner_pos == len(self.table):
             self.table.append(player(winner_name))
