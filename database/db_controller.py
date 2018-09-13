@@ -38,6 +38,14 @@ class Database:
     def get_leaderboard(self, leaderboard):
         query = "SELECT * FROM {leaderboard} ORDER BY Rank ASC;"\
                 .format(leaderboard=leaderboard)
+        response = self.conn.execute(query)
+        leaderboard = []
+
+        for row in response:
+            leaderboard.append(row[1])
+
+        return leaderboard
+
 
     def get_leaderboards(self):
         query = "SELECT name FROM sqlite_master WHERE type='table';"
@@ -73,10 +81,12 @@ if __name__ == "__main__":
     db.commit()
     # cache = db.view_league_table("TC")
 
+    table = db.get_leaderboard("TC")
+
     formatted_table = PrettyTable(["Name", "Rank"])
-    for row in db.view_league_table("TC"):
-        formatted_table.add_row([row[1], row[0]])
-    formatted_table.title = "TC"
+    for player in table:
+        formatted_table.add_row([player, table.index(player) + 1])
+    formatted_table.title = "taste card"
     print formatted_table
 
     db.close()
