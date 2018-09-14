@@ -7,21 +7,22 @@ class Interface:
     def __init__(self, args):
         self.args = args
 
+    def check_all_args(self, long_args, short_args):
+        return (long_args in self.args) or (short_args in self.args)
+
+    def check_first_arg(self, long_args, short_args):
+        return self.args[1] == long_args or self.args[1] == short_args
+
     def unix_args(self):
         try:
-            if (self.args[1] == "--win" or self.args[1] == "-w") and (self.args[3] == "--lose" or self.args[3] == "-l"):
-                return True
-            else:
-                return False
+            return (self.args[1] == "--win" or self.args[1] == "-w") and (self.args[3] == "--lose" or self.args[3] == "-l")
         except:
             return False
 
     def with_leaderboard(self):
         try:
-            if ("--leaderboard" in self.args) or ("-lb" in self.args):
-                return True
-            else:
-                return False
+            return self.check_all_args("--leaderboard", "-lb")
+
         except:
             return False
 
@@ -32,28 +33,20 @@ class Interface:
 
     def is_list_ladders(self):
         try:
-            if self.args[1] == "--listladders" or self.args[1] == "-ll":
-                return True
-            else:
-                return False
+            return self.check_first_arg("--listladders", "-ll")
+
         except:
             return False
     
     def is_get_ladder(self):
         try:
-            if self.args[1] == "--getladder" or self.args[1] == "-gl":
-                return True
-            else:
-                return False
+            return self.check_first_arg("--getladder", "-gl")
         except:
             return False
 
     def is_get_help(self):
         try:
-            if self.args[1] == "--help" or self.args[1] == "-h":
-                return True
-            else:
-                return False
+            return self.check_first_arg("--help", "-h")
         except:
             return False
 
