@@ -12,7 +12,7 @@ class Ladder:
 
     def __init__(self, ladder_name):
         self.ladder_name = ladder_name
-        self.db = Database()
+        self.db = Database(ladder_name)
         self.table = self.db.get_leaderboard(ladder_name)
 
     def list_ladders(self):
@@ -35,27 +35,32 @@ class Ladder:
     def add_new_score(self, winner_name, loser_name):
         winner_name, loser_name = winner_name.capitalize(), loser_name.capitalize()
         winner_pos, loser_pos = self.get_pos(winner_name), self.get_pos(loser_name)
-
-        if (winner_pos and loser_pos) and (loser_pos < winner_pos):
+        print self.table
+        print winner_pos, loser_pos
+        if (winner_pos != False and loser_pos != False) and (loser_pos < winner_pos):
+            print "two_competing_player"
             self.db.two_competing_player(self.ladder_name, winner_name, winner_pos + 1, loser_pos + 1)
 
-        elif not winner_pos and not loser_pos:
+        elif winner_pos == False and loser_pos == False:
+            print "insert_two_new_players"
             self.db.insert_two_new_players(self.ladder_name, winner_name, loser_name)
 
-        elif winner_pos and not loser_pos:
+        elif winner_pos != False and loser_pos == False:
+            print "append_player"
             self.db.append_player(self.ladder_name, loser_name)
 
-        elif loser_pos and not winner_pos:
+        elif loser_pos != False and (winner_pos == False):
+            print "insert_winning_player"
+            print winner_pos, loser_pos
             self.db.insert_winning_player(self.ladder_name, loser_pos + 1, winner_name)
 
         self.table = self.db.get_leaderboard(self.ladder_name)
         self.db.close()
 
-    def in_leaderboard(self, name):
-        return name in self.table
-
     def get_pos(self, name):
         try:
+            print name, self.table
+
             if name in self.table:
                 return self.table.index(name)
             else:

@@ -5,12 +5,15 @@ from prettytable import PrettyTable
 
 class Database:
     #TODO:  Mike is very angry. Our SQL is injectable :D
-    def __init__(self):
+    def __init__(self, ladder_name):
         self.conn = sqlite3.connect('database/table_tennis.db')
 
+        if ladder_name not in self.get_leaderboards():
+            self.create_league_table(ladder_name)
+
     def create_league_table(self, league_name):
-        self.conn.execute("CREATE TABLE {league} (rank INTEGER, name TEXT)"
-                          .format(league=league_name))
+        self.conn.execute("CREATE TABLE {league} (rank INTEGER, name TEXT)".format(league=league_name))
+        self.commit()
 
     def insert_row_league(self, league_name, rank_num, player_name):
         self.conn.execute("INSERT INTO {league} VALUES "
@@ -51,7 +54,6 @@ class Database:
 
         return leaderboard
 
-
     def get_leaderboards(self):
         query = "SELECT name FROM sqlite_master WHERE type='table';"
         response = self.conn.execute(query)
@@ -90,8 +92,8 @@ class Database:
 
 
 if __name__ == "__main__":
-    db = Database()
-    db.create_league_table("TC")
+    db = Database("TC")
+    db.create_league_table("global")
     db.insert_row_league("TC", 1, "James")
     db.insert_row_league("TC", 2, "Mike")
     db.insert_row_league("TC", 3, "Bobby")
