@@ -24,13 +24,10 @@ class Ladder:
 
         print formatted_table
 
-
     def print_ladder(self):
-        table = self.db.get_leaderboard(self.ladder_name)
         formatted_table = PrettyTable(["Name", "Rank"])
-
-        for player in table:
-            formatted_table.add_row([player, table.index(player) + 1])
+        for player in self.table:
+            formatted_table.add_row([player, self.table.index(player) + 1])
         formatted_table.title = self.ladder_name
 
         print formatted_table
@@ -45,26 +42,20 @@ class Ladder:
             if name == winner_name:
                 winner_pos = self.table.index(name)
 
-        print "HERE -- \n\n"
-        print self.table
-
         if loser_pos == len(self.table) and winner_pos == len(self.table):
-            print "Into 2 new players \n\n\n"
             self.db.insert_two_new_players(self.ladder_name, winner_name, loser_name)
 
         elif winner_pos == len(self.table):
-            print "Into insert 1 new winner \n\n\n"
-            self.db.insert_winning_player(self.ladder_name, loser_pos, winner_name)
+            self.db.insert_winning_player(self.ladder_name, loser_pos + 1, winner_name)
 
         elif loser_pos == len(self.table) and winner_pos != len(self.table):
-            print "Into 1 new loser \n\n\n"
             self.db.append_player(self.ladder_name, loser_name)
 
         else:
-            print "Into 2 existing players \n\n\n"
-            self.db.two_competing_player(self.ladder_name, winner_name, winner_pos, loser_name)
+            if loser_pos < winner_pos:
+                self.db.two_competing_player(self.ladder_name, winner_name, winner_pos + 1, loser_pos + 1)
 
-        self.db.commit()
+        self.table = self.db.get_leaderboard(self.ladder_name)
         self.db.close()
 
     def player_in_ladder(self, name):

@@ -34,7 +34,7 @@ def main():
 
             ladder.add_new_score(winner_name, loser_name)
             ladder.print_ladder()
-            ladder.write_state()
+
             exit_code(0)
 
         else:
