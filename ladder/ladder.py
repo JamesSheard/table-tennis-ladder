@@ -33,30 +33,40 @@ class Ladder:
         print formatted_table
 
     def add_new_score(self, winner_name, loser_name):
-        loser_pos, winner_pos = len(self.table), len(self.table)
         winner_name, loser_name = winner_name.capitalize(), loser_name.capitalize()
+        winner_pos, loser_pos = self.get_pos(winner_name), self.get_pos(loser_name)
 
-        for name in self.table:
-            if name == loser_name:
-                loser_pos = self.table.index(name)
-            if name == winner_name:
-                winner_pos = self.table.index(name)
+        if (winner_pos and loser_pos) and (loser_pos < winner_pos):
+            print "statement 1"
+            self.db.two_competing_player(self.ladder_name, winner_name, winner_pos + 1, loser_pos + 1)
 
-        if loser_pos == len(self.table) and winner_pos == len(self.table):
+        elif not winner_pos and not loser_pos:
+            print "statement 2"
             self.db.insert_two_new_players(self.ladder_name, winner_name, loser_name)
 
-        elif winner_pos == len(self.table):
-            self.db.insert_winning_player(self.ladder_name, loser_pos + 1, winner_name)
-
-        elif loser_pos == len(self.table) and winner_pos != len(self.table):
+        elif winner_pos and not loser_pos:
+            print "statement 3"
             self.db.append_player(self.ladder_name, loser_name)
 
-        else:
-            if loser_pos < winner_pos:
-                self.db.two_competing_player(self.ladder_name, winner_name, winner_pos + 1, loser_pos + 1)
+        elif loser_pos and not winner_pos:
+            print "statement 4"
+            self.db.insert_winning_player(self.ladder_name, loser_pos + 1, winner_name)
 
         self.table = self.db.get_leaderboard(self.ladder_name)
         self.db.close()
+
+    def in_leaderboard(self, name):
+        return name in self.table
+
+    def get_pos(self, name):
+        try:
+            if name in self.table:
+                return self.table.index(name)
+            else:
+                return False
+        except:
+            return False
+
 
     def player_in_ladder(self, name):
         for player in self.table:
