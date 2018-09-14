@@ -35,24 +35,23 @@ class Ladder:
     def add_new_score(self, winner_name, loser_name):
         winner_name, loser_name = winner_name.capitalize(), loser_name.capitalize()
         winner_pos, loser_pos = self.get_pos(winner_name), self.get_pos(loser_name)
-        print self.table
-        print winner_pos, loser_pos
-        if (winner_pos != False and loser_pos != False) and (loser_pos < winner_pos):
-            print "two_competing_player"
-            self.db.two_competing_player(self.ladder_name, winner_name, winner_pos + 1, loser_pos + 1)
 
-        elif winner_pos == False and loser_pos == False:
-            print "insert_two_new_players"
-            self.db.insert_two_new_players(self.ladder_name, winner_name, loser_name)
+        # Winning player is lower in ladder than losing player
+        if winner_pos is not False and loser_pos is not False:
+            if loser_pos < winner_pos:
+                self.db.two_competing_player(self.ladder_name, winner_name, winner_pos + 1, loser_pos + 1)
 
-        elif winner_pos != False and loser_pos == False:
-            print "append_player"
+        # Losing player is not in the ladder
+        elif winner_pos is not False and loser_pos is False:
             self.db.append_player(self.ladder_name, loser_name)
 
-        elif loser_pos != False and (winner_pos == False):
-            print "insert_winning_player"
-            print winner_pos, loser_pos
+        # Winning player is not in the ladder
+        elif loser_pos is not False and winner_pos is False:
             self.db.insert_winning_player(self.ladder_name, loser_pos + 1, winner_name)
+
+        # Neither player is in ladder
+        elif winner_pos is False and loser_pos is False:
+            self.db.insert_two_new_players(self.ladder_name, winner_name, loser_name)
 
         self.table = self.db.get_leaderboard(self.ladder_name)
         self.db.close()
