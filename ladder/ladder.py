@@ -37,19 +37,15 @@ class Ladder:
         winner_pos, loser_pos = self.get_pos(winner_name), self.get_pos(loser_name)
 
         if (winner_pos and loser_pos) and (loser_pos < winner_pos):
-            print "statement 1"
             self.db.two_competing_player(self.ladder_name, winner_name, winner_pos + 1, loser_pos + 1)
 
         elif not winner_pos and not loser_pos:
-            print "statement 2"
             self.db.insert_two_new_players(self.ladder_name, winner_name, loser_name)
 
         elif winner_pos and not loser_pos:
-            print "statement 3"
             self.db.append_player(self.ladder_name, loser_name)
 
         elif loser_pos and not winner_pos:
-            print "statement 4"
             self.db.insert_winning_player(self.ladder_name, loser_pos + 1, winner_name)
 
         self.table = self.db.get_leaderboard(self.ladder_name)
