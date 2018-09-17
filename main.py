@@ -1,4 +1,6 @@
 import sys
+
+from html.html_generator import HtmlGenerator
 from user_interface.user_interface import Interface
 
 
@@ -29,17 +31,14 @@ def main():
             ladder.add_new_score(winner_name, loser_name)
             ladder.print_ladder()
 
+            html = HtmlGenerator(ladder.ladder_name, ladder.table)
+            html.write_html()
+
         else:
             print "Incorrect parameters. Use `python main.py --help` to view commands"
 
     except:
         user_interface.print_help()
-
-
-def exit_code(code):
-    if code < 0 or code > 3:
-        print "invalid exit code"
-    print "Program quit with exit code: " + str(code)
 
 
 if __name__ == "__main__":

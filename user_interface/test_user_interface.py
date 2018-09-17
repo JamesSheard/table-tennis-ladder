@@ -14,8 +14,8 @@ class TestUserInterfaceMethods(unittest.TestCase):
             [["main.py", "--win", "James", "--lose", "mike"], True],
             [["main.py", "-w", "James", "-l", "mike"], True],
             [["main.py", "-w", "James", "--lose", "mike"], True],
-            [["foo", 0123, "bar"], False],
-            [[0123, 4385], False]
+            [["foo", "0123", "bar"], False],
+            [["0123", "4385"], False]
         ]
 
         for tc in test_cases:

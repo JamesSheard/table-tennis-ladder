@@ -80,4 +80,4 @@ class Interface:
                 sys.exit()
             return Ladder(self.args[lb_pos], Database(self.args[lb_pos]))
         else:
-            return Ladder("global")
+            return Ladder("global", Database("global"))

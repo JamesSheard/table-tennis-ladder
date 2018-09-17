@@ -1,7 +1,6 @@
 import sys
 import unittest
 from ladder import Ladder
-from player.player import player
 import StringIO
 from mocks.mock_db import Database
 
@@ -9,19 +8,19 @@ from mocks.mock_db import Database
 class TestLadderMethods(unittest.TestCase):
     def setUp(self):
         mock_db = Database("Test_Ladder", [
-            player("Jim"),
-            player("John"),
-            player("Bob"),
-            player("Bill"),
-            player("Kev")])
+            "Jim",
+            "John",
+            "Bob",
+            "Bill",
+            "Kev"])
 
         self.ladder = Ladder("Test_Ladder", mock_db)
         self.ladder.table = [
-            player("Jim"),
-            player("John"),
-            player("Bob"),
-            player("Bill"),
-            player("Kev")]
+            "Jim",
+            "John",
+            "Bob",
+            "Bill",
+            "Kev"]
 
     def test_player_in_ladder(self):
         self.assertEqual(self.ladder.player_in_ladder("Jim"), True)
@@ -29,98 +28,108 @@ class TestLadderMethods(unittest.TestCase):
 
     def test_add_two_new_players(self):
         self.ladder.table = [
-            player("Jim"),
-            player("John"),
-            player("Bob"),
-            player("Bill"),
-            player("Kev")]
+            "Jim",
+            "John",
+            "Bob",
+            "Bill",
+            "Kev"]
 
         expected_table = [
-            player("Jim"),
-            player("John"),
-            player("Bob"),
-            player("Bill"),
-            player("Kev"),
-            player("Gazza"),
-            player("Carlson")]
+            "Jim",
+            "John",
+            "Bob",
+            "Bill",
+            "Kev",
+            "Gazza",
+            "Carlson"]
 
         self.ladder.add_new_score("Gazza", "Carlson")
 
         for x in range(0, len(self.ladder.table)):
-            self.assertEqual(self.ladder.table[x].name, expected_table[x].name)
+            self.assertEqual(self.ladder.table[x], expected_table[x])
 
     def test_add_one_new_winning_player(self):
         self.ladder.table = [
-            player("Jim"),
-            player("John"),
-            player("Bob"),
-            player("Bill"),
-            player("Kev")]
+            "Jim",
+            "John",
+            "Bob",
+            "Bill",
+            "Kev"]
 
         expected_table = [
-            player("Jim"),
-            player("John"),
-            player("Bob"),
-            player("Gazza"),
-            player("Bill"),
-            player("Kev")]
+            "Jim",
+            "John",
+            "Bob",
+            "Gazza",
+            "Bill",
+            "Kev"]
 
         self.ladder.add_new_score("Gazza", "Bill")
 
         for x in range(0, len(self.ladder.table)):
-            self.assertEqual(self.ladder.table[x].name, expected_table[x].name)
+            self.assertEqual(self.ladder.table[x], expected_table[x])
 
     def test_add_one_new_losing_player(self):
         self.ladder.table = [
-            player("Jim"),
-            player("John"),
-            player("Bob"),
-            player("Bill"),
-            player("Kev")]
+            "Jim",
+            "John",
+            "Bob",
+            "Bill",
+            "Kev"]
 
         expected_table = [
-            player("Jim"),
-            player("John"),
-            player("Bob"),
-            player("Bill"),
-            player("Kev"),
-            player("Gazza")]
+            "Jim",
+            "John",
+            "Bob",
+            "Bill",
+            "Kev",
+            "Gazza"]
 
         self.ladder.add_new_score("John", "Gazza")
 
         for x in range(0, len(self.ladder.table)):
-            self.assertEqual(self.ladder.table[x].name, expected_table[x].name)
+            self.assertEqual(self.ladder.table[x], expected_table[x])
 
     def test_existing_competing_players(self):
         self.ladder.table = [
-            player("Jim"),
-            player("John"),
-            player("Bob"),
-            player("Bill"),
-            player("Kev")]
+            "Jim",
+            "John",
+            "Bob",
+            "Bill",
+            "Kev"]
 
         expected_table = [
-            player("Jim"),
-            player("Bill"),
-            player("John"),
-            player("Bob"),
-            player("Kev")]
+            "Jim",
+            "Bill",
+            "John",
+            "Bob",
+            "Kev"]
 
         self.ladder.add_new_score("Bill", "John")
 
         for x in range(0, len(self.ladder.table)):
-            self.assertEqual(self.ladder.table[x].name, expected_table[x].name)
+            self.assertEqual(self.ladder.table[x], expected_table[x])
 
     def test_print_ladder(self):
         captured_output = StringIO.StringIO()
         sys.stdout = captured_output
         self.ladder.print_ladder()
-        expected_len = 638
-        # 638 is the number of characters in the leaderboard
+        expected_len = 198
+        # 198 is the number of characters in the leaderboard
         # TODO: This is properly shonk.
 
         self.assertEqual(len(captured_output.getvalue()), expected_len)
 
+    def test_list_ladders(self):
+        captured_output = StringIO.StringIO()
+        sys.stdout = captured_output
+        self.ladder.list_ladders()
+        expected_output = "+-------------+\n| League Name |\n+-------------+\n" \
+                          "|  taste_card |\n|     emis    |\n|    global   |\n+-------------+\n"
+        # 198 is the number of characters in the leaderboard
+        # TODO: This is properly shonk.
+
+        self.assertEqual(captured_output.getvalue(), expected_output)
 
 if __name__ == "__main__":
     unittest.main()

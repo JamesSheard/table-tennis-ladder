@@ -9,5 +9,41 @@ class Database:
     def get_leaderboards(self):
         return ["taste_card", "emis", "global"]
 
-    def db.two_competing_player(self.ladder_name, winner_name, winner_pos, loser_pos):
-        return
+    def two_competing_player(self, ladder_name, winner_name, winner_pos, loser_pos):
+        self.table = [
+            "Jim",
+            "Bill",
+            "John",
+            "Bob",
+            "Kev"]
+
+    def append_player(self, ladder_name, loser_name):
+        self.table = [
+            "Jim",
+            "John",
+            "Bob",
+            "Bill",
+            "Kev",
+            "Gazza"]
+
+    def insert_winning_player(self, ladder_name, loser_pos, winner_name):
+        self.table = [
+            "Jim",
+            "John",
+            "Bob",
+            "Gazza",
+            "Bill",
+            "Kev"]
+
+    def insert_two_new_players(self, ladder_name, winner_name, loser_name):
+        self.table = [
+            "Jim",
+            "John",
+            "Bob",
+            "Bill",
+            "Kev",
+            "Gazza",
+            "Carlson"]
+
+    def close(self):
+        return True

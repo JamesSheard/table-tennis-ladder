@@ -1,4 +1,4 @@
-from quik import FileLoader, Template
+from quik import FileLoader
 
 
 class HtmlGenerator:

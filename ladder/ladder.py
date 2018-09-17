@@ -1,5 +1,4 @@
 from prettytable import PrettyTable
-from html.html_generator import HtmlGenerator
 
 
 class Ladder:
@@ -18,7 +17,7 @@ class Ladder:
         for leagues in leaderboards:
             formatted_table.add_row([leagues])
 
-        print formatted_table
+        print formatted_table.get_string()
 
     def print_ladder(self):
         formatted_table = PrettyTable(["Name", "Rank"])
@@ -52,9 +51,6 @@ class Ladder:
         self.table = self.db.get_leaderboard(self.ladder_name)
         self.db.close()
 
-        # html = HtmlGenerator(self.ladder_name, self.table)
-        # html.write_html()
-
     def get_pos(self, name):
         try:
             if name in self.table:
@@ -65,7 +61,6 @@ class Ladder:
             return False
 
     def player_in_ladder(self, name):
-        for player in self.table:
-            if player.name == name:
-                return True
-            return False
+        if name in self.table:
+            return True
+        return False
