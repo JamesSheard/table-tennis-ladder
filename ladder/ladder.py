@@ -25,7 +25,7 @@ class Ladder:
             formatted_table.add_row([player, self.table.index(player) + 1])
         formatted_table.title = self.ladder_name
 
-        print formatted_table
+        print formatted_table.get_string()
 
     def add_new_score(self, winner_name, loser_name):
         winner_name, loser_name = winner_name.capitalize(), loser_name.capitalize()
@@ -59,8 +59,3 @@ class Ladder:
                 return False
         except:
             return False
-
-    def player_in_ladder(self, name):
-        if name in self.table:
-            return True
-        return False

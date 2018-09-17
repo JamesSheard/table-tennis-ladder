@@ -22,10 +22,6 @@ class TestLadderMethods(unittest.TestCase):
             "Bill",
             "Kev"]
 
-    def test_player_in_ladder(self):
-        self.assertEqual(self.ladder.player_in_ladder("Jim"), True)
-        self.assertEqual(self.ladder.player_in_ladder("Gavin"), False)
-
     def test_add_two_new_players(self):
         self.ladder.table = [
             "Jim",
@@ -114,22 +110,42 @@ class TestLadderMethods(unittest.TestCase):
         captured_output = StringIO.StringIO()
         sys.stdout = captured_output
         self.ladder.print_ladder()
-        expected_len = 198
-        # 198 is the number of characters in the leaderboard
-        # TODO: This is properly shonk.
+        expected_output = "+---------------+\n|  Test_Ladder  |\n+-------+-------+\n" \
+                          "|  Name |  Rank |\n+-------+-------+\n|  Jim  |   1   |\n" \
+                          "|  John |   2   |\n|  Bob  |   3   |\n|  Bill |   4   |\n" \
+                          "|  Kev  |   5   |\n+-------+-------+\n"
 
-        self.assertEqual(len(captured_output.getvalue()), expected_len)
+        self.assertEqual(captured_output.getvalue(), expected_output)
 
     def test_list_ladders(self):
         captured_output = StringIO.StringIO()
         sys.stdout = captured_output
         self.ladder.list_ladders()
         expected_output = "+-------------+\n| League Name |\n+-------------+\n" \
-                          "|  taste_card |\n|     emis    |\n|    global   |\n+-------------+\n"
-        # 198 is the number of characters in the leaderboard
-        # TODO: This is properly shonk.
+                          "|  taste_card |\n|     emis    |\n|    global   |\n" \
+                          "+-------------+\n"
 
         self.assertEqual(captured_output.getvalue(), expected_output)
+
+    def test_get_pos(self):
+        self.ladder.table = [
+            "Jim",
+            "John",
+            "Bob",
+            "Bill",
+            "Kev"]
+
+        test_cases = [
+                        ["Bob", 2],
+                        ["Gregory", False],
+                        [233144, False]
+                      ]
+
+        for tc in test_cases:
+            expected_output = tc[1]
+            actual_output = self.ladder.get_pos(tc[0])
+            self.assertEqual(expected_output, actual_output)
+
 
 if __name__ == "__main__":
     unittest.main()
