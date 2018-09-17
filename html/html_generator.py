@@ -12,9 +12,9 @@ class HtmlGenerator:
         template = loader.load_template('ladder_template.html')
         players = []
 
-        for player in self.table:
-            players.append({'name': player.name,
-                            'rank': self.table.index(player) + 1})
+        for name in self.table:
+            players.append({'name': name,
+                            'rank': self.table.index(name) + 1})
 
         return template.render(locals(), loader=loader).encode('utf-8')
 

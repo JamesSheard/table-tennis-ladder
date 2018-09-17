@@ -54,6 +54,9 @@ class Ladder:
         self.table = self.db.get_leaderboard(self.ladder_name)
         self.db.close()
 
+        html = HtmlGenerator(self.ladder_name, self.table)
+        html.write_html()
+
     def get_pos(self, name):
         try:
             if name in self.table:
@@ -68,31 +71,3 @@ class Ladder:
             if player.name == name:
                 return True
             return False
-
-    def read_state(self, ladder_name):
-        self.file_name = "ladder/state/" + ladder_name + ".txt"
-        try:
-            with open(self.file_name) as f:
-                contents = f.read().split("\n")
-                for line in contents:
-                    self.table.append(player(line))
-
-        except:
-            self.table = []
-            print "Could not find populated state file."
-
-    def write_state(self):
-        html_generator = HtmlGenerator(self.ladder_name, self.table)
-
-        with open(self.file_name, "w+") as f:
-            f.truncate(0)
-            for player in self.table:
-                if self.table.index(player) == len(self.table) - 1:
-                    f.write(player.name)
-                else:
-                    f.write(player.name + "\n")
-
-        html_generator.write_html()
-
-        return
-

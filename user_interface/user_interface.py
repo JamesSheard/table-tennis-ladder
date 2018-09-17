@@ -52,12 +52,14 @@ class Interface:
         except:
             return False
 
-    def print_help(self):
+    @staticmethod
+    def print_help():
         f = open("help/help.txt")
         print f.read()
         f.close()
 
-    def validate_input(self, name):
+    @staticmethod
+    def validate_input(name):
         invalid_chars = set(string.punctuation.replace("_", ""))
 
         if len(name) > 20:
