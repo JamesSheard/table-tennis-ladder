@@ -13,8 +13,7 @@ Used to track your table tennis rankings within Infinity Works. Also, it's one o
 
 Download Python 2.7
 
-pip2 install PrettyTable
-pip2 install Quik
+make build
 
 ## How to use
 
@@ -37,5 +36,4 @@ We have some unit tests written. This will test if logic works.
 ### How to run
 |Command|Description|
 |-|-|
-|python test_ladder.py|Runs the tests for the ladder file|
-|python test_user_interface.py|Runs the tests for the user interface file|
+|make build|
