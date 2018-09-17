@@ -15,7 +15,7 @@ class Interface:
     def check_first_arg(self, long_args, short_args):
         return self.args[1] == long_args or self.args[1] == short_args
 
-    def unix_args(self):
+    def record_result(self):
         try:
             return (self.args[1] == "--win" or self.args[1] == "-w") and (self.args[3] == "--lose" or self.args[3] == "-l")
         except:

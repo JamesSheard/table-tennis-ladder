@@ -9,7 +9,7 @@ class TestUserInterfaceMethods(unittest.TestCase):
     def setUp(self):
         self.user_interface = Interface([])
 
-    def test_unix_args(self):
+    def test_record_results(self):
         test_cases = [
             [["main.py", "--win", "James", "--lose", "mike"], True],
             [["main.py", "-w", "James", "-l", "mike"], True],
@@ -21,7 +21,7 @@ class TestUserInterfaceMethods(unittest.TestCase):
         for tc in test_cases:
             self.user_interface.args = tc[0]
             expected = tc[1]
-            self.assertEqual(expected, self.user_interface.unix_args())
+            self.assertEqual(expected, self.user_interface.record_result())
 
     def test_is_get_ladder(self):
         test_cases = [

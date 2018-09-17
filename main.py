@@ -16,7 +16,7 @@ def main():
         elif user_interface.is_list_ladders():
             ladder.list_ladders()
 
-        elif user_interface.unix_args():
+        elif user_interface.record_result():
             winner_name, loser_name = sys.argv[2], sys.argv[4]
 
             if winner_name == loser_name:
