@@ -6,9 +6,8 @@ import StringIO
 
 
 class TestLadderMethods(unittest.TestCase):
-
     def setUp(self):
-        self.ladder = Ladder("Test Ladder")
+        self.ladder = Ladder("Test_Ladder")
         self.ladder.table = [
             player("Jim"),
             player("John"),

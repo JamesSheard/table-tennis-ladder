@@ -14,6 +14,7 @@ Used to track your table tennis rankings within Infinity Works. Also, it's one o
 Download Python 2.7
 
 pip2 install PrettyTable
+pip2 install Quik
 
 ## How to use
 
@@ -21,7 +22,7 @@ Python command:
 python main.py
 
 Example use:
-python main.py -w Dan -l Ben -lb Infinity_Works_Internal
+python main.py -w Dan -l Ben -lb sky_bet
 
 |Arguements|Longer Arg|What it does|
 |-|-|-|

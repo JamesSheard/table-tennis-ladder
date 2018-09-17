@@ -1,4 +1,6 @@
 import string
+import sys
+from ladder.ladder import Ladder
 
 
 class Interface:
@@ -63,7 +65,16 @@ class Interface:
             return True
 
         if any(char in invalid_chars for char in name):
-            print "Name contains invalid characters. Please use only letters, spaces and underscores."
+            print "Selection contains invalid characters. Please use only letters and underscores."
             return True
         else:
             return False
+
+    def select_ladder(self):
+        if self.with_leaderboard():
+            lb_pos = self.get_leaderboard_pos()
+            if self.validate_input(self.args[lb_pos]):
+                sys.exit()
+            return Ladder(self.args[lb_pos])
+        else:
+            return Ladder("global")

@@ -1,7 +1,5 @@
 import sqlite3
 
-from prettytable import PrettyTable
-
 
 class Database:
     #TODO:  Mike is very angry. Our SQL is injectable :D
@@ -89,26 +87,3 @@ class Database:
         self.conn.execute(query_three)
 
         self.commit()
-
-
-if __name__ == "__main__":
-    db = Database("TC")
-    db.create_league_table("global")
-    db.insert_row_league("TC", 1, "James")
-    db.insert_row_league("TC", 2, "Mike")
-    db.insert_row_league("TC", 3, "Bobby")
-    db.insert_row_league("TC", 4, "Bill")
-    db.insert_row_league("TC", 5, "Dan")
-
-    db.commit()
-    # cache = db.view_league_table("TC")
-
-    table = db.get_leaderboard("TC")
-
-    formatted_table = PrettyTable(["Name", "Rank"])
-    for player in table:
-        formatted_table.add_row([player, table.index(player) + 1])
-    formatted_table.title = "taste card"
-    print formatted_table
-
-    db.close()

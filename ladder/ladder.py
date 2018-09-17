@@ -3,8 +3,6 @@ from player.player import player
 from prettytable import PrettyTable
 from html.html_generator import HtmlGenerator
 
-import os
-
 
 class Ladder:
     file_name = ""
@@ -58,15 +56,12 @@ class Ladder:
 
     def get_pos(self, name):
         try:
-            print name, self.table
-
             if name in self.table:
                 return self.table.index(name)
             else:
                 return False
         except:
             return False
-
 
     def player_in_ladder(self, name):
         for player in self.table:
