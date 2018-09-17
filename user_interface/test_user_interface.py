@@ -2,6 +2,8 @@ import unittest
 from user_interface import Interface
 import StringIO
 import sys
+from ladder.ladder import Ladder
+from database.db_controller import Database
 
 
 class TestUserInterfaceMethods(unittest.TestCase):
@@ -124,6 +126,28 @@ class TestUserInterfaceMethods(unittest.TestCase):
             expected = tc[1]
             actual = self.user_interface.validate_input(input)
             self.assertEqual(expected, actual)
+
+    def test_select_ladder(self):
+        test_cases = [
+            [["main.py", "-lb", "taste_card"], "taste_card"],
+            [["main.py", "-lb", "emis"], "emis"],
+            [["main.py", "--leaderboard", "emis"], "emis"]
+        ]
+
+        for tc in test_cases:
+            self.user_interface.args = tc[0]
+
+            self.assertEqual(
+                self.user_interface.select_ladder().ladder_name,
+                Ladder(tc[1], Database(tc[1])).ladder_name
+            )
+
+    def test_select_ladder_raises_expection(self):
+        self.user_interface.args = ["main.py", "-lb", "!@%!"]
+
+        with self.assertRaises(SystemExit) as cm:
+            self.user_interface.select_ladder()
+            self.assertEqual(cm.exception, "Error")
 
 
 if __name__ == '__main__':
