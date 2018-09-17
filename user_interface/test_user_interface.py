@@ -131,7 +131,8 @@ class TestUserInterfaceMethods(unittest.TestCase):
         test_cases = [
             [["main.py", "-lb", "taste_card"], "taste_card"],
             [["main.py", "-lb", "emis"], "emis"],
-            [["main.py", "--leaderboard", "emis"], "emis"]
+            [["main.py", "--leaderboard", "emis"], "emis"],
+            [["main.py"], "global"]
         ]
 
         for tc in test_cases:

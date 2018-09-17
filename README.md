@@ -37,3 +37,4 @@ We have some unit tests written. This will test if logic works.
 |Command|Description|
 |-|-|
 |make build|
+|make test|
