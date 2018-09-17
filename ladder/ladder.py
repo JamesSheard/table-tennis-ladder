@@ -1,5 +1,3 @@
-from database.db_controller import Database
-from player.player import player
 from prettytable import PrettyTable
 from html.html_generator import HtmlGenerator
 
@@ -8,9 +6,9 @@ class Ladder:
     file_name = ""
     table = []
 
-    def __init__(self, ladder_name):
+    def __init__(self, ladder_name, db):
         self.ladder_name = ladder_name
-        self.db = Database(ladder_name)
+        self.db = db
         self.table = self.db.get_leaderboard(ladder_name)
 
     def list_ladders(self):
@@ -54,8 +52,8 @@ class Ladder:
         self.table = self.db.get_leaderboard(self.ladder_name)
         self.db.close()
 
-        html = HtmlGenerator(self.ladder_name, self.table)
-        html.write_html()
+        # html = HtmlGenerator(self.ladder_name, self.table)
+        # html.write_html()
 
     def get_pos(self, name):
         try:

@@ -3,11 +3,19 @@ import unittest
 from ladder import Ladder
 from player.player import player
 import StringIO
+from mocks.mock_db import Database
 
 
 class TestLadderMethods(unittest.TestCase):
     def setUp(self):
-        self.ladder = Ladder("Test_Ladder")
+        mock_db = Database("Test_Ladder", [
+            player("Jim"),
+            player("John"),
+            player("Bob"),
+            player("Bill"),
+            player("Kev")])
+
+        self.ladder = Ladder("Test_Ladder", mock_db)
         self.ladder.table = [
             player("Jim"),
             player("John"),
@@ -107,8 +115,8 @@ class TestLadderMethods(unittest.TestCase):
         captured_output = StringIO.StringIO()
         sys.stdout = captured_output
         self.ladder.print_ladder()
-        expected_len = 198
-        # 144 is the number of characters in the leaderboard
+        expected_len = 638
+        # 638 is the number of characters in the leaderboard
         # TODO: This is properly shonk.
 
         self.assertEqual(len(captured_output.getvalue()), expected_len)

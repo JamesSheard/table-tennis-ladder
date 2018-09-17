@@ -1,6 +1,7 @@
 import string
 import sys
 from ladder.ladder import Ladder
+from database.db_controller import Database
 
 
 class Interface:
@@ -77,6 +78,6 @@ class Interface:
             lb_pos = self.get_leaderboard_pos()
             if self.validate_input(self.args[lb_pos]):
                 sys.exit()
-            return Ladder(self.args[lb_pos])
+            return Ladder(self.args[lb_pos], Database(self.args[lb_pos]))
         else:
             return Ladder("global")
