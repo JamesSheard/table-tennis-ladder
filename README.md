@@ -1,3 +1,5 @@
+This repo is no longer maintained.
+
 # Table Tennis Ladder
 
 ### Created by
